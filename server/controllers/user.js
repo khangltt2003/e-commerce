@@ -2,6 +2,7 @@ import User from "../modules/user.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 
+//async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
   const { email, password, firstname, lastname } = req.body;
 
