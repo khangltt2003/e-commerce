@@ -15,7 +15,6 @@ const register = asyncHandler(async (req, res) => {
       mes: "Missing inputs",
     });
   }
-
   //check if  email && mobile exist
   const emailFound = await User.findOne({ email: email });
   if (emailFound) {
@@ -25,7 +24,6 @@ const register = asyncHandler(async (req, res) => {
   if (mobileFound) {
     throw Error("Mobile number is already used!!!");
   }
-
   const saltRound = 10;
   const hashedPassword = await bcrypt.hash(password, saltRound);
   const newUser = new User({ ...req.body, password: hashedPassword });
@@ -46,7 +44,9 @@ const loginByEmail = asyncHandler(async (req, res) => {
       mes: "Missing input",
     });
   }
+  //find email in database
   const userFound = await User.findOne({ email: email });
+  console.log(userFound);
   //if found user and input passwordd == hashed password
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
     loginSuccess(userFound, res);
@@ -63,7 +63,6 @@ const loginByMobile = asyncHandler(async (req, res) => {
       mes: "Missing input",
     });
   }
-
   const userFound = await User.findOne({ mobile: mobile });
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
     loginSuccess(userFound, res);
@@ -81,7 +80,6 @@ const loginSuccess = asyncHandler(async (user, res) => {
   //create accesstoken by jwt
   const accessToken = generateAccessToken(userData._id, userData.role); //create access token
   const refreshToken = generateRefreshToken(userData._id); // create refresh token
-
   //update and store refresh token in database
   await User.findByIdAndUpdate(
     { _id: userData._id }, //query
@@ -95,7 +93,6 @@ const loginSuccess = asyncHandler(async (user, res) => {
     httpOnly: true, //accept only https
     maxAge: 14 * 24 * 60 * 60 * 1000, //14 days to ms
   });
-
   return res.status(200).json({
     success: true,
     mes: "Login successfully",
@@ -106,6 +103,7 @@ const loginSuccess = asyncHandler(async (user, res) => {
 });
 
 const getCurrUser = asyncHandler(async (req, res) => {
+  console.log(req.user);
   const { _id } = req.user;
   const currUser = await User.findById(
     { _id: _id },

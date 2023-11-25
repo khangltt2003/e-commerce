@@ -11,8 +11,9 @@ const verifyAccessToken = AsyncHandler(async (req, res, next) => {
           mes: "Invalid Access Token",
         });
       }
+      //ex decode { _id: '65611c6a14f4fcda5ce3aa87', iat: 1700900288, exp: 1701505088 }
+      //set req.user to decode -> get current user by id
       req.user = decode;
-      console.log(decode);
       next();
     });
   } else {
