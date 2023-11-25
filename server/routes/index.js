@@ -5,10 +5,10 @@ const userRouter = router;
 
 const initRoutes = (app) => {
   //app will find all routes in router if not found, errorHandler will handle it
-  app.use("/api/user", userRouter);
+  app.use("/api/user", userRouter); //mount user to user route
 
-  app.use(notFound);
-  app.use(errorHandler);
+  app.use(notFound); //not found route
+  app.use(errorHandler); //error handler middleware
 };
 
 export default initRoutes;
