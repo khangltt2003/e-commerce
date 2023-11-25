@@ -78,8 +78,8 @@ const loginSuccess = asyncHandler(async (user, res) => {
   const { password, role, ...userData } = user.toObject();
   //retrieve password and role out of user
   //create accesstoken by jwt
-  const accessToken = generateAccessToken(userData._id, userData.role); //create access token
-  const refreshToken = generateRefreshToken(userData._id); // create refresh token
+  const accessToken = generateAccessToken(userData._id, role); //create access token using id and role
+  const refreshToken = generateRefreshToken(userData._id); // create refresh token using id
   //update and store refresh token in database
   await User.findByIdAndUpdate(
     { _id: userData._id }, //query
@@ -103,11 +103,10 @@ const loginSuccess = asyncHandler(async (user, res) => {
 });
 
 const getCurrUser = asyncHandler(async (req, res) => {
-  console.log(req.user);
   const { _id } = req.user;
   const currUser = await User.findById(
     { _id: _id },
-    { refreshToken: 0, password: 0, role: 0 }
+    { refreshToken: 0, password: 0, role: 0 } //exclude refresh token, password, role from showing
   );
   return res.status(200).json({
     success: currUser ? true : false,
