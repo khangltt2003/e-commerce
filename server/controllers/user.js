@@ -1,6 +1,7 @@
 import User from "../modules/user.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
+import { generateAccessToken } from "../middlewares/jwt.js";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -43,13 +44,9 @@ const loginByEmail = asyncHandler(async (req, res) => {
     });
   }
   const userFound = await User.findOne({ email: email });
+  //if found user and input passwordd == hashed password
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
-    const { password, role, ...userData } = userFound.toObject();
-    return res.status(200).json({
-      success: true,
-      mes: "Login Successfully",
-      userData,
-    });
+    loginSuccess(userFound, res);
   } else {
     throw Error("Login failed. Invalid email or password");
   }
@@ -63,17 +60,25 @@ const loginByMobile = asyncHandler(async (req, res) => {
       mes: "Missing input",
     });
   }
+
   const userFound = await User.findOne({ mobile: mobile });
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
-    const { password, role, ...userData } = userFound.toObject();
-    return res.status(200).json({
-      success: true,
-      mes: "Login successfully",
-      userData,
-    });
+    loginSuccess(userFound, res);
   } else {
     throw Error("Login failed. Invalid mobile number or password");
   }
 });
+
+const loginSuccess = (user, res) => {
+  const { password, role, ...userData } = user.toObject();
+  //create accesstoken by jwt
+  const accessToken = generateAccessToken(userData._id, userData.role);
+  return res.status(200).json({
+    success: true,
+    mes: "Login successfully",
+    accessToken,
+    userData,
+  });
+};
 
 export { register, loginByEmail, loginByMobile };
