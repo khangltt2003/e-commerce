@@ -1,7 +1,10 @@
 import User from "../modules/user.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
-import { generateAccessToken } from "../middlewares/jwt.js";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../middlewares/jwt.js";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -69,16 +72,49 @@ const loginByMobile = asyncHandler(async (req, res) => {
   }
 });
 
-const loginSuccess = (user, res) => {
+//access token - verify user and distribute role
+//refresh token - reset access toke
+const loginSuccess = asyncHandler(async (user, res) => {
+  //exclude password and role from showing
   const { password, role, ...userData } = user.toObject();
+  //retrieve password and role out of user
   //create accesstoken by jwt
-  const accessToken = generateAccessToken(userData._id, userData.role);
+  const accessToken = generateAccessToken(userData._id, userData.role); //create access token
+  const refreshToken = generateRefreshToken(userData._id); // create refresh token
+
+  //update and store refresh token in database
+  await User.findByIdAndUpdate(
+    { _id: userData._id }, //query
+    { refreshToken: refreshToken }, //update
+    { new: true }
+  );
+
+  //send refresh token to cookie
+  //response return refresh token to cookie
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true, //accept only https
+    maxAge: 14 * 24 * 60 * 60 * 1000, //14 days to ms
+  });
+
   return res.status(200).json({
     success: true,
     mes: "Login successfully",
     accessToken,
+    refreshToken,
     userData,
   });
-};
+});
 
-export { register, loginByEmail, loginByMobile };
+const getCurrUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const currUser = await User.findById(
+    { _id: _id },
+    { refreshToken: 0, password: 0, role: 0 }
+  );
+  return res.status(200).json({
+    success: currUser ? true : false,
+    res: currUser ? currUser : "User not found",
+  });
+});
+
+export { register, loginByEmail, loginByMobile, getCurrUser };
