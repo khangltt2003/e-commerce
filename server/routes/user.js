@@ -1,5 +1,5 @@
 import express from "express";
-import { getCurrUser, loginByEmail, loginByMobile, refreshAccessToken, register } from "../controllers/user.js";
+import { getCurrUser, loginByEmail, loginByMobile, logout, refreshAccessToken, register } from "../controllers/user.js";
 import { verifyAccessToken } from "../middlewares/verifyAccessToken.js";
 const router = express.Router();
 
@@ -9,6 +9,7 @@ router.post("/login/mobile", loginByMobile);
 //when user want to access to specific, authorize them by verifyAccessToken
 router.get("/current", verifyAccessToken, getCurrUser);
 router.post("/refreshAccessToken", refreshAccessToken);
+router.post("/logout", logout);
 // router.get("/register", (req, res) => {
 //   res.send("Register page");
 // });

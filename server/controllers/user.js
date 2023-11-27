@@ -73,17 +73,15 @@ const loginByMobile = asyncHandler(async (req, res) => {
 const loginSuccess = asyncHandler(async (user, res) => {
   //exclude password and role from showing
   const { password, role, ...userData } = user.toObject();
-  //retrieve password and role out of user
   //create accesstoken by jwt
   const accessToken = generateAccessToken(userData._id, role); //create access token using id and role
   const refreshToken = generateRefreshToken(userData._id); // create refresh token using id
   //update and store refresh token in database
   await User.findByIdAndUpdate({ _id: userData._id }, { refreshToken: refreshToken }, { new: true });
-  //send refresh token to cookie
-  //store in cookie for 14 days
+  //store in cookie for 7 days
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true, //accept only https
-    maxAge: 14 * 24 * 60 * 60 * 1000, //14 days to ms
+    maxAge: 7 * 24 * 60 * 60 * 1000, //7 days to ms
   });
   return res.status(200).json({
     success: true,
@@ -109,17 +107,32 @@ const getCurrUser = asyncHandler(async (req, res) => {
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   //check if there is refresh token in cookie
-  if (!cookie && !cookie.refreshToke) {
-    throw new Error("No refresh token in cookie");
+  if (!cookie || !cookie.refreshToken) {
+    throw new Error("No refresh token in cookies");
   }
   //verify refresh token
+  //{ _id: '65613027a00db6dc9df36a85', iat: 1701070908, exp: 1701070938 }
   const decode = jwt.verify(cookie.refreshToken, process.env.JWT_SECRET_KEY);
+  //find user and check if refresh token match user's refresh token in database simutaneously
   const user = await User.findOne({ _id: decode._id, refreshToken: cookie.refreshToken });
   return res.status(200).json({
     success: user ? true : false,
     newAccessToken: user ? generateAccessToken(user._id, user.role) : "Refresh token does not match",
   });
-  //check if refresh token match user's refresh token in database
 });
 
-export { register, loginByEmail, loginByMobile, getCurrUser, refreshAccessToken };
+const logout = asyncHandler(async (req, res) => {
+  const cookie = req.cookies;
+  //check if refresh token in cookies
+  if (!cookie || !cookie.refreshToken) throw new Error("No refresh token in cookies");
+  //delete refresh token in database
+  await User.findOneAndUpdate({ refreshToken: cookie.refreshToken }, { refreshToken: "" }, { new: true });
+  //delete refresh token in cookie
+  res.clearCookie("refreshToken", { httpOnly: true, secure: true });
+  return res.status(200).json({
+    success: true,
+    mes: "Logged out",
+  });
+});
+
+export { register, loginByEmail, loginByMobile, getCurrUser, refreshAccessToken, logout };
