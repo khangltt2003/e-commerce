@@ -11,12 +11,14 @@ const verifyAccessToken = AsyncHandler(async (req, res, next) => {
           mes: "Invalid Access Token",
         });
       }
-      //ex decode { _id: '65611c6a14f4fcda5ce3aa87', iat: 1700900288, exp: 1701505088 }
+      //ex decode {_id: '65613027a00db6dc9df36a85', role: 'user', iat: 1701046998, exp: 1701047008}
       //set req.user to decode -> get current user by id
       req.user = decode;
       next();
     });
-  } else {
+  }
+  //if dont have access token
+  else {
     return res.status(401).json({
       success: false,
       mes: "Require Access Token",
