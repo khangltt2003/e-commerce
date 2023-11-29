@@ -144,26 +144,31 @@ const logout = asyncHandler(async (req, res) => {
 //server check reset password is valid (the same as sent token) or not
 //change password
 
+//prompt user to add email
 const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.query;
   if (!email) throw new Error("Missing email");
   const user = User.findOne({ email: email });
   if (!user) throw new Error("Invalid email");
 
-  const resetToken = crypto.randomBytes(32).toString("hex");
+  const resetToken = crypto.randomBytes(32).toString("hex"); //create a random string as reset token
   await user.findOneAndUpdate(
     { email: email },
     {
       $set: {
-        passwordResetToken: crypto.createHash("sha256").update(resetToken).digest("hex"),
-        passwordResetExpire: Date.now() + 10 * 60 * 1000,
+        passwordResetToken: crypto.createHash("sha256").update(resetToken).digest("hex"), //store hashed reset token in database
+        passwordResetExpire: Date.now() + 10 * 60 * 1000, //expire
       },
     }
   );
+
+  //send to html to user's mail
+  //direct user to /api/user/resetpassword/${resetToken} to check reset token after
   const html = `<h1>Forgot Password</h1>
                 <h3>Click The Link below to reset your password</h3>
                  <a href=${process.env.SEVER_URL}/api/user/resetpassword/${resetToken}><button>Click this!!!</button></a>`;
 
+  //send mail using nodemailer (utils)
   const response = await sendMail(email, html);
   return res.status(200).json({
     success: response ? true : false,
@@ -172,14 +177,17 @@ const forgotPassword = asyncHandler(async (req, res) => {
 });
 
 const resetPassword = asyncHandler(async (req, res) => {
+  //get reset password from params
+  //{{user_url}}/resetpassword/08fca68ab438ea156b875ae4517e01124b247ed46506c295da0bca08fb9da515
   const { resetToken } = req.params;
-  const { password } = req.body;
-  const hashedResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+  const { password } = req.body; //
+  const hashedResetToken = crypto.createHash("sha256").update(resetToken).digest("hex"); //hash reset token to compare with hashed reset token in database
   const user = await User.findOne(
     { passwordResetToken: hashedResetToken, passwordResetExpire: { $gt: Date.now() } }, //invalid when reset token expire time less than current time
-    { password: 0, role: 0 }
+    { password: 0, role: 0, refreshToken: 0 }
   );
   if (!user) throw new Error("Invalid reset password token");
+  //update user password and set reset password token to undefined
   user.passwordChangedAt = Date.now();
   user.password = await bcrypt.hash(password, 10);
   user.passwordResetExpire = undefined;
