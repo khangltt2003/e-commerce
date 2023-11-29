@@ -20,7 +20,7 @@ router.get("/current", verifyAccessToken, getCurrUser);
 router.post("/refreshAccessToken", refreshAccessToken);
 router.post("/logout", logout);
 router.get("/forgotpassword", forgotPassword);
-router.put("/resetpassword", resetPassword);
+router.put("/resetpassword/:resetToken", resetPassword);
 // router.get("/register", (req, res) => {
 //   res.send("Register page");
 // });

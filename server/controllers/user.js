@@ -174,16 +174,16 @@ const forgotPassword = asyncHandler(async (req, res) => {
 const resetPassword = asyncHandler(async (req, res) => {
   const { resetToken } = req.params;
   const { password } = req.body;
-  const hashedResetToken = crypto.createHash.update(resetToken).digest("hex");
+  const hashedResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
   const user = await User.findOne(
     { passwordResetToken: hashedResetToken, passwordResetExpire: { $gt: Date.now() } }, //invalid when reset token expire time less than current time
     { password: 0, role: 0 }
   );
   if (!user) throw new Error("Invalid reset password token");
-  user.passwordResetToken = undefined;
   user.passwordChangedAt = Date.now();
-  user.passwordResetExpire = undefined;
   user.password = await bcrypt.hash(password, 10);
+  user.passwordResetExpire = undefined;
+  user.passwordResetToken = undefined;
   await user.save();
   return res.status(200).json({
     success: user ? true : false,
