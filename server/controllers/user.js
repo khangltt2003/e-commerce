@@ -15,7 +15,7 @@ const register = asyncHandler(async (req, res) => {
       mes: "Missing inputs",
     });
   }
-  //check if  email && mobile exist
+  //check if  email && mobile already exist
   const emailFound = await User.findOne({ email: email });
   if (emailFound) {
     throw new Error("Email is already used!!!");
@@ -173,7 +173,22 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
 const resetPassword = asyncHandler(async (req, res) => {
   const { resetToken } = req.params;
+  const { password } = req.body;
   const hashedResetToken = crypto.createHash.update(resetToken).digest("hex");
+  const user = await User.findOne(
+    { passwordResetToken: hashedResetToken, passwordResetExpire: { $gt: Date.now() } }, //invalid when reset token expire time less than current time
+    { password: 0, role: 0 }
+  );
+  if (!user) throw new Error("Invalid reset password token");
+  user.passwordResetToken = undefined;
+  user.passwordChangedAt = Date.now();
+  user.passwordResetExpire = undefined;
+  user.password = await bcrypt.hash(password, 10);
+  await user.save();
+  return res.status(200).json({
+    success: user ? true : false,
+    res: user ? "Your password is updated" : "Something went wrong",
+  });
 });
 
 export {
