@@ -1,5 +1,14 @@
 import express from "express";
-import { getCurrUser, loginByEmail, loginByMobile, logout, refreshAccessToken, register } from "../controllers/user.js";
+import {
+  forgotPassword,
+  getCurrUser,
+  loginByEmail,
+  loginByMobile,
+  logout,
+  refreshAccessToken,
+  register,
+  resetPassword,
+} from "../controllers/user.js";
 import { verifyAccessToken } from "../middlewares/verifyAccessToken.js";
 const router = express.Router();
 
@@ -10,6 +19,8 @@ router.post("/login/mobile", loginByMobile);
 router.get("/current", verifyAccessToken, getCurrUser);
 router.post("/refreshAccessToken", refreshAccessToken);
 router.post("/logout", logout);
+router.get("/forgotpassword", forgotPassword);
+router.put("/resetpassword", resetPassword);
 // router.get("/register", (req, res) => {
 //   res.send("Register page");
 // });
@@ -17,3 +28,5 @@ export { router };
 
 //CRUD = create read update delete
 //HTTPS  post get put delete
+//get - delete : query
+//put - post : body

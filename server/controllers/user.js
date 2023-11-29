@@ -3,6 +3,8 @@ import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import { generateAccessToken, generateRefreshToken } from "../middlewares/jwt.js";
 import jwt from "jsonwebtoken";
+import { sendMail } from "../ultils/sendmail.js";
+import crypto from "crypto";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -135,4 +137,52 @@ const logout = asyncHandler(async (req, res) => {
   });
 });
 
-export { register, loginByEmail, loginByMobile, getCurrUser, refreshAccessToken, logout };
+//forgot password
+//client sends request to reset password to server
+//server checks and sends reset password link to user's email + access token to that page
+//client clicks the link and send back the request
+//server check reset password is valid (the same as sent token) or not
+//change password
+
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.query;
+  if (!email) throw new Error("Missing email");
+  const user = User.findOne({ email: email });
+  if (!user) throw new Error("Invalid email");
+
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  await user.findOneAndUpdate(
+    { email: email },
+    {
+      $set: {
+        passwordResetToken: crypto.createHash("sha256").update(resetToken).digest("hex"),
+        passwordResetExpire: Date.now() + 10 * 60 * 1000,
+      },
+    }
+  );
+  const html = `<h1>Forgot Password</h1>
+                <h3>Click The Link below to reset your password</h3>
+                 <a href=${process.env.SEVER_URL}/api/user/resetpassword/${resetToken}><button>Click this!!!</button></a>`;
+
+  const response = await sendMail(email, html);
+  return res.status(200).json({
+    success: response ? true : false,
+    response,
+  });
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { resetToken } = req.params;
+  const hashedResetToken = crypto.createHash.update(resetToken).digest("hex");
+});
+
+export {
+  register,
+  loginByEmail,
+  loginByMobile,
+  getCurrUser,
+  refreshAccessToken,
+  logout,
+  forgotPassword,
+  resetPassword,
+};

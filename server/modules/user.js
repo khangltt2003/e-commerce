@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
   firstname: {
