@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  blockUser,
   deleteUser,
   forgotPassword,
   getAllUsers,
@@ -10,6 +11,7 @@ import {
   refreshAccessToken,
   register,
   resetPassword,
+  unblockUser,
   updateUser,
   updateUserbyAdmin,
 } from "../controllers/user.js";
@@ -31,6 +33,8 @@ router.put("/current", verifyAccessToken, updateUser);
 router.get("/", [verifyAccessToken, isAdmin], getAllUsers);
 router.put("/:_id", [verifyAccessToken, isAdmin], updateUserbyAdmin);
 router.delete("/", [verifyAccessToken, isAdmin], deleteUser);
+router.put("/blockuser/:_id", [verifyAccessToken, isAdmin], blockUser);
+router.put("/unblockuser/:_id", [verifyAccessToken, isAdmin], unblockUser);
 
 // router.get("/register", (req, res) => {
 //   res.send("Register page");

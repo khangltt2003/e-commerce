@@ -47,8 +47,10 @@ const loginByEmail = asyncHandler(async (req, res) => {
   }
   //find email in database
   const userFound = await User.findOne({ email: email });
+  console.log(userFound);
   //if found user and input passwordd == hashed password
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
+    if (userFound.isBlocked) throw new Error("You are blocked. Please contact admin");
     loginSuccess(userFound, res);
   } else {
     throw new Error("Login failed. Invalid email or password");
@@ -65,6 +67,7 @@ const loginByMobile = asyncHandler(async (req, res) => {
   }
   const userFound = await User.findOne({ mobile: mobile });
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
+    if (userFound.isBlocked) throw new Error("You are blocked. Please connect admin");
     loginSuccess(userFound, res);
   } else {
     throw new Error("Login failed. Invalid mobile number or password");
@@ -245,6 +248,34 @@ const updateUserbyAdmin = asyncHandler(async (req, res) => {
   });
 });
 
+const blockUser = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  const response = await User.findOneAndUpdate(
+    { _id: _id },
+    { isBlocked: true },
+    { password: 0, role: 0, refreshToken: 0, new: true }
+  );
+  return res.status(200).json({
+    success: response ? true : false,
+    mes: `user with email ${response._id} is blocked.`,
+    result: response ? response : "cannot find user",
+  });
+});
+
+const unblockUser = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  const response = await User.findOneAndUpdate(
+    { _id: _id },
+    { isBlocked: false },
+    { password: 0, role: 0, refreshToken: 0, new: true }
+  );
+  return res.status(200).json({
+    success: response ? true : false,
+    mes: `user with email ${response._id} is unblocked.`,
+    result: response ? response : "cannot find user",
+  });
+});
+
 export {
   register,
   loginByEmail,
@@ -258,4 +289,6 @@ export {
   deleteUser,
   updateUser,
   updateUserbyAdmin,
+  blockUser,
+  unblockUser,
 };
