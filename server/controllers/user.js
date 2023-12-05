@@ -5,6 +5,7 @@ import { generateAccessToken, generateRefreshToken } from "../middlewares/jwt.js
 import jwt from "jsonwebtoken";
 import { sendMail } from "../ultils/sendmail.js";
 import crypto from "crypto";
+import { response } from "express";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -73,15 +74,15 @@ const loginByMobile = asyncHandler(async (req, res) => {
 //access token - verify user and distribute role
 //refresh token - reset access toke
 const loginSuccess = asyncHandler(async (user, res) => {
-  //exclude password and role from showing
-  const { password, role, ...userData } = user.toObject();
+  //exclude password, refresh token, and role from showing
+  const { password, role, refreshToken, ...userData } = user.toObject();
   //create accesstoken by jwt
   const accessToken = generateAccessToken(userData._id, role); //create access token using id and role
-  const refreshToken = generateRefreshToken(userData._id); // create refresh token using id
+  const newRefreshToken = generateRefreshToken(userData._id); // create refresh token using id
   //update and store refresh token in database
-  await User.findByIdAndUpdate({ _id: userData._id }, { refreshToken: refreshToken }, { new: true });
-  //store in cookie for 7 days
-  res.cookie("refreshToken", refreshToken, {
+  await User.findByIdAndUpdate({ _id: userData._id }, { refreshToken: newRefreshToken }, { new: true });
+  //store refresh token in cookie for 7 days
+  res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true, //accept only https
     maxAge: 7 * 24 * 60 * 60 * 1000, //7 days to ms
   });
@@ -89,7 +90,6 @@ const loginSuccess = asyncHandler(async (user, res) => {
     success: true,
     mes: "Login successfully",
     accessToken,
-    refreshToken,
     userData,
   });
 });
@@ -148,22 +148,17 @@ const logout = asyncHandler(async (req, res) => {
 const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.query;
   if (!email) throw new Error("Missing email");
-  const user = User.findOne({ email: email });
+
+  const user = await User.findOne({ email: email });
   if (!user) throw new Error("Invalid email");
 
   const resetToken = crypto.randomBytes(32).toString("hex"); //create a random string as reset token
-  await user.findOneAndUpdate(
-    { email: email },
-    {
-      $set: {
-        passwordResetToken: crypto.createHash("sha256").update(resetToken).digest("hex"), //store hashed reset token in database
-        passwordResetExpire: Date.now() + 10 * 60 * 1000, //expire
-      },
-    }
-  );
+  user.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex"); //hash reset token
+  user.passwordResetExpire = Date.now() + 10 * 60 * 1000;
+  await user.save();
 
   //send to html to user's mail
-  //direct user to /api/user/resetpassword/${resetToken} to check reset token after
+  //direct user to /api/user/resetpassword/${resetToken} to check reset token
   const html = `<h1>Forgot Password</h1>
                 <h3>Click The Link below to reset your password</h3>
                  <a href=${process.env.SEVER_URL}/api/user/resetpassword/${resetToken}><button>Click this!!!</button></a>`;
@@ -199,6 +194,57 @@ const resetPassword = asyncHandler(async (req, res) => {
   });
 });
 
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({}, { password: 0, refreshToken: 0 });
+  return res.status(200).json({
+    success: users ? true : false,
+    res: users ? users : "No users in database",
+  });
+});
+
+const deleteUser = asyncHandler(async (req, res) => {
+  const { _id } = req.query;
+  if (!_id) throw new Error("no id");
+  const response = await User.findOneAndDelete({ _id: _id });
+  return res.status(200).json({
+    success: response ? true : false,
+    res: response ? `user with "${response.email}" is deleted` : "something wrong",
+  });
+});
+
+const updateUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  if (req.body.hasOwnProperty("role")) throw new Error("cannot change role");
+  if (!_id || Object.keys(req.body).length === 0) throw new Error("missing input");
+
+  const response = await User.findByIdAndUpdate({ _id: _id }, req.body, {
+    password: 0,
+    role: 0,
+    refreshToken: 0,
+    new: true,
+  });
+  return res.status(200).json({
+    success: response ? true : false,
+    result: response ? response : "something went wrong",
+  });
+});
+
+const updateUserbyAdmin = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  if (!_id || Object.keys(req.body).length === 0) throw new Error("missing input");
+  const response = await User.findByIdAndUpdate({ _id: _id }, req.body, {
+    password: 0,
+    role: 0,
+    refreshToken: 0,
+    new: true,
+  });
+  return res.status(200).json({
+    success: response ? true : false,
+    mes: response ? `User with email "${response.email}" is updated` : "something went wrong",
+    response: response,
+  });
+});
+
 export {
   register,
   loginByEmail,
@@ -208,4 +254,8 @@ export {
   logout,
   forgotPassword,
   resetPassword,
+  getAllUsers,
+  deleteUser,
+  updateUser,
+  updateUserbyAdmin,
 };

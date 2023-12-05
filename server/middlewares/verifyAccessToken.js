@@ -26,4 +26,10 @@ const verifyAccessToken = AsyncHandler(async (req, res, next) => {
   }
 });
 
-export { verifyAccessToken };
+const isAdmin = AsyncHandler(async (req, res, next) => {
+  const { role } = req.user;
+  if (role !== "admin") throw new Error("Require Admin");
+  next();
+});
+
+export { verifyAccessToken, isAdmin };
