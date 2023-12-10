@@ -5,7 +5,6 @@ import { generateAccessToken, generateRefreshToken } from "../middlewares/jwt.js
 import jwt from "jsonwebtoken";
 import { sendMail } from "../ultils/sendmail.js";
 import crypto from "crypto";
-import { response } from "express";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -149,7 +148,7 @@ const logout = asyncHandler(async (req, res) => {
 
 //prompt user to add email
 const forgotPassword = asyncHandler(async (req, res) => {
-  const { email } = req.query;
+  const { email } = req.body;
   if (!email) throw new Error("Missing email");
 
   const user = await User.findOne({ email: email });
@@ -217,9 +216,9 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
+  //check if user want to update role
   if (req.body.hasOwnProperty("role")) throw new Error("cannot change role");
   if (!_id || Object.keys(req.body).length === 0) throw new Error("missing input");
-
   const response = await User.findByIdAndUpdate({ _id: _id }, req.body, {
     password: 0,
     role: 0,
@@ -257,8 +256,8 @@ const blockUser = asyncHandler(async (req, res) => {
   );
   return res.status(200).json({
     success: response ? true : false,
-    mes: `user with email ${response._id} is blocked.`,
-    result: response ? response : "cannot find user",
+    mes: response ? `user with email ${response._id} is blocked.` : "something went wrong",
+    response,
   });
 });
 
@@ -271,8 +270,8 @@ const unblockUser = asyncHandler(async (req, res) => {
   );
   return res.status(200).json({
     success: response ? true : false,
-    mes: `user with email ${response._id} is unblocked.`,
-    result: response ? response : "cannot find user",
+    mes: response ? `user with email ${response._id} is unblocked.` : "something went wrong",
+    response,
   });
 });
 

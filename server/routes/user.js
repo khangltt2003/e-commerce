@@ -39,7 +39,7 @@ router.put("/unblockuser/:_id", [verifyAccessToken, isAdmin], unblockUser);
 // router.get("/register", (req, res) => {
 //   res.send("Register page");
 // });
-export { router };
+export default router;
 
 //CRUD = create read update delete
 //HTTPS  post get put delete
