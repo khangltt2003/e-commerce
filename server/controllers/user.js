@@ -163,7 +163,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
   //direct user to /api/user/resetpassword/${resetToken} to check reset token
   const html = `<h1>Forgot Password</h1>
                 <h3>Click The Link below to reset your password</h3>
-                 <a href=${process.env.SEVER_URL}/api/user/resetpassword/${resetToken}><button>Click this!!!</button></a>`;
+                 <a href=${process.env.SERVER_URL}/api/user/resetpassword/${resetToken}><button>Click this!!!</button></a>`;
 
   //send mail using nodemailer (utils)
   const response = await sendMail(email, html);
@@ -219,12 +219,17 @@ const updateUser = asyncHandler(async (req, res) => {
   //check if user want to update role
   if (req.body.hasOwnProperty("role")) throw new Error("cannot change role");
   if (!_id || Object.keys(req.body).length === 0) throw new Error("missing input");
-  const response = await User.findByIdAndUpdate({ _id: _id }, req.body, {
-    password: 0,
-    role: 0,
-    refreshToken: 0,
-    new: true,
-  });
+  const newSlug = slugify(req.body.title);
+  const response = await User.findByIdAndUpdate(
+    { _id: _id },
+    { ...req.body, newSlug },
+    {
+      password: 0,
+      role: 0,
+      refreshToken: 0,
+      new: true,
+    }
+  );
   return res.status(200).json({
     success: response ? true : false,
     result: response ? response : "something went wrong",

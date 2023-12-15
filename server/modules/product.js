@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Declare the Schema of the Mongo model
-var productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -45,14 +45,14 @@ var productSchema = new mongoose.Schema(
       type: String,
       enum: ["Black", "Grown", "Red"],
     },
-    ratings: [
+    reviews: [
       {
-        star: { type: Number },
+        rate: { type: Number },
         postedBy: { type: mongoose.Types.ObjectId, ref: "User" },
         comment: { type: String },
       },
     ],
-    totalRatings: {
+    totalReviews: {
       type: Number,
       default: 0,
     },
