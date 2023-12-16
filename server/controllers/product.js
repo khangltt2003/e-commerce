@@ -1,4 +1,3 @@
-import { json } from "express";
 import Product from "../modules/product.js";
 import asyncHandler from "express-async-handler";
 import slugify from "slugify";
@@ -25,9 +24,9 @@ const createProduct = asyncHandler(async (req, res) => {
 //filter, pagination, sort
 const getAllProducts = asyncHandler(async (req, res) => {
   const queryObj = { ...req.query }; //{ brand: 'nzxt', price: { gte: '100' }, sort: 'price' }
-
+  // console.log(queryObj);
   //delete excluded fields from query object
-  const excludedFields = ["page", "sort", "limit", "fields"]; //fields to be excluded
+  const excludedFields = ["page", "sort", "limit", "fields"]; //special fields
   excludedFields.forEach((item) => delete queryObj[item]);
 
   //use regex to add $ before each query to match with mongoose format
@@ -39,12 +38,23 @@ const getAllProducts = asyncHandler(async (req, res) => {
     formatedQuery.title = { $regex: queryObj.title, $option: "i" };
   }
 
+  //sort
   let sortBy = { brand: 1, price: 1 };
   if (req.query.sort) {
     sortBy = req.query.sort.split(",").join(" "); // sort=brand,price => [brand, price] => "brand price"
   }
-  const response = await Product.find(formatedQuery).sort(sortBy);
+  //fields limit
+  let fields = `title description price`;
+  if (req.query.fields) {
+    fields = req.query.fields.split(",").join(" ");
+  }
+  //console.log(formatedQuery);
 
+  // const currentPage = req.query.page;
+  // const numberOfItemInOnePage = 10;
+  // const numItem = response.length;
+  const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
+  console.log(response);
   return res.status(200).json({
     success: response ? true : false,
     response: response ? response : "cannot get products",
