@@ -115,8 +115,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new Error("No refresh token in cookies");
   }
   //verify refresh token
-  //{ _id: '65613027a00db6dc9df36a85', iat: 1701070908, exp: 1701070938 }
-  const decode = jwt.verify(cookie.refreshToken, process.env.JWT_SECRET_KEY);
+  const decode = jwt.verify(cookie.refreshToken, process.env.JWT_SECRET_KEY); //{ _id: '65613027a00db6dc9df36a85', iat: 1701070908, exp: 1701070938 }
   //find user and check if refresh token match user's refresh token in database simutaneously
   const user = await User.findOne({ _id: decode._id, refreshToken: cookie.refreshToken });
   return res.status(200).json({

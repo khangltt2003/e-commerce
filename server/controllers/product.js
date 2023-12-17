@@ -44,16 +44,22 @@ const getAllProducts = asyncHandler(async (req, res) => {
     sortBy = req.query.sort.split(",").join(" "); // sort=brand,price => [brand, price] => "brand price"
   }
   //fields limit
-  let fields = `title description price`;
+  let fields = `title description price brand reviews`;
   if (req.query.fields) {
     fields = req.query.fields.split(",").join(" ");
   }
   //console.log(formatedQuery);
 
-  // const currentPage = req.query.page;
-  // const numberOfItemInOnePage = 10;
-  // const numItem = response.length;
-  const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
+  //pagination
+  //limit: number of object in 1 page
+  //skip: number of object skipped ex: skip: 10 skip first 10 objects
+
+  const currentPage = +req.query.page || 1; //add + to convert from string to number
+  const limit = +req.query.limit || 10;
+  const skip = limit * (currentPage - 1);
+  const response = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
+  //const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
+
   console.log(response);
   return res.status(200).json({
     success: response ? true : false,
@@ -89,4 +95,19 @@ const deleteProduct = asyncHandler(async (req, res) => {
   });
 });
 
-export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct };
+const reviewProduct = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const { productId, rate, comment } = req.body;
+  if (!rate || !productId) throw new Error("missing input");
+  const response = await Product.findByIdAndUpdate(
+    productId,
+    { $inc: { totalReviews: 1 }, $push: { reviews: { rate: rate, comment: comment, postedBy: userId } } }, //inc total reviews and push new review
+    { new: true }
+  );
+  return res.status(200).json({
+    success: response ? true : false,
+    response,
+  });
+});
+
+export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct };
