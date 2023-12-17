@@ -60,7 +60,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const response = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
   //const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
 
-  console.log(response);
+  //console.log(response);
   return res.status(200).json({
     success: response ? true : false,
     response: response ? response : "cannot get products",
@@ -99,11 +99,30 @@ const reviewProduct = asyncHandler(async (req, res) => {
   const userId = req.user._id;
   const { productId, rate, comment } = req.body;
   if (!rate || !productId) throw new Error("missing input");
-  const response = await Product.findByIdAndUpdate(
-    productId,
-    { $inc: { totalReviews: 1 }, $push: { reviews: { rate: rate, comment: comment, postedBy: userId } } }, //inc total reviews and push new review
-    { new: true }
-  );
+  const product = await Product.findById(productId);
+
+  // check if the user already review the product
+  //  yes => update the review
+  //  no => add new review
+  const alreadyReviewed = product.reviews.some((item) => item.postedBy.toString() === userId);
+  if (alreadyReviewed) {
+    product.reviews = product.reviews.map((review) => {
+      if (review.postedBy.toString() === userId) {
+        review.comment = comment;
+        review.rate = rate;
+      }
+      return review;
+    });
+  } else {
+    product.reviews.push({ rate: rate, comment: comment, postedBy: userId });
+    product.totalReviews++;
+  }
+  const response = await product.save();
+  // const response = await Product.findByIdAndUpdate(
+  //   productId,
+  //   { $inc: { totalReviews: 1 }, $push: { reviews: { rate: rate, comment: comment, postedBy: userId } } }, //inc total reviews and push new review
+  //   { new: true }
+  // );
   return res.status(200).json({
     success: response ? true : false,
     response,
