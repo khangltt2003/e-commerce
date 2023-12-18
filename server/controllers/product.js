@@ -104,29 +104,28 @@ const reviewProduct = asyncHandler(async (req, res) => {
   // check if the user already review the product
   //  yes => update the review
   //  no => add new review
-  const alreadyReviewed = product.reviews.some((item) => item.postedBy.toString() === userId);
+  const alreadyReviewed = product.reviews.find((item) => item.postedBy.toString() === userId);
   if (alreadyReviewed) {
-    product.reviews = product.reviews.map((review) => {
-      if (review.postedBy.toString() === userId) {
-        review.comment = comment;
-        review.rate = rate;
-      }
-      return review;
+    const response = await Product.updateOne(
+      { reviews: { $elemMatch: alreadyReviewed } },
+      { $set: { "reviews.$.rate": rate, "reviews.$.comment": comment } },
+      { new: true }
+    );
+    return res.status(200).json({
+      success: response ? true : false,
+      response,
     });
   } else {
-    product.reviews.push({ rate: rate, comment: comment, postedBy: userId });
-    product.totalReviews++;
+    const response = await Product.findByIdAndUpdate(
+      { _id: productId },
+      { $push: { reviews: { rate, comment, postedBy: userId } }, $inc: { totalReviews: 1 } },
+      { new: true }
+    );
+    return res.status(200).json({
+      success: response ? true : false,
+      response,
+    });
   }
-  const response = await product.save();
-  // const response = await Product.findByIdAndUpdate(
-  //   productId,
-  //   { $inc: { totalReviews: 1 }, $push: { reviews: { rate: rate, comment: comment, postedBy: userId } } }, //inc total reviews and push new review
-  //   { new: true }
-  // );
-  return res.status(200).json({
-    success: response ? true : false,
-    response,
-  });
 });
 
 export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct };
