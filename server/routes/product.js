@@ -14,8 +14,8 @@ const Router = express.Router();
 Router.post("/", [verifyAccessToken, isAdmin], createProduct);
 Router.get("/", getAllProducts);
 Router.get("/:_id", getProduct);
+Router.put("/review", verifyAccessToken, reviewProduct);
 Router.put("/:_id", [verifyAccessToken, isAdmin], updateProduct);
 Router.delete("/:_id", [verifyAccessToken, isAdmin], deleteProduct);
-Router.put("/review", verifyAccessToken, reviewProduct);
 
 export default Router;

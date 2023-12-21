@@ -3,7 +3,6 @@ import asyncHandler from "express-async-handler";
 import slugify from "slugify";
 
 const createProduct = asyncHandler(async (req, res) => {
-  console.log(req.body);
   if (
     Object.keys(req.body).length === 0 ||
     !req.body.title ||
@@ -79,7 +78,11 @@ const getProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
-  const response = await Product.findByIdAndUpdate({ _id: _id }, { ...req.body, slug: slugify(req.body.title) });
+  const response = await Product.findByIdAndUpdate(
+    { _id: _id },
+    { ...req.body, slug: slugify(req.body.title) },
+    { new: true }
+  );
   return res.status(200).json({
     success: response ? true : false,
     mes: response ? response : "cannot update product",
@@ -102,30 +105,33 @@ const reviewProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(productId);
 
   // check if the user already review the product
-  //  yes => update the review
-  //  no => add new review
+  //  exist => update the review
+  //  null => add new review
   const alreadyReviewed = product.reviews.find((item) => item.postedBy.toString() === userId);
   if (alreadyReviewed) {
-    const response = await Product.updateOne(
+    await Product.updateOne(
       { reviews: { $elemMatch: alreadyReviewed } },
-      { $set: { "reviews.$.rate": rate, "reviews.$.comment": comment } },
-      { new: true }
+      { $set: { "reviews.$.rate": rate, "reviews.$.comment": comment } }
     );
-    return res.status(200).json({
-      success: response ? true : false,
-      response,
-    });
   } else {
-    const response = await Product.findByIdAndUpdate(
+    await Product.findByIdAndUpdate(
       { _id: productId },
-      { $push: { reviews: { rate, comment, postedBy: userId } }, $inc: { totalReviews: 1 } },
-      { new: true }
+      { $push: { reviews: { rate, comment, postedBy: userId } }, $inc: { totalReviews: 1 } } //push new review and add 1 to total review
     );
-    return res.status(200).json({
-      success: response ? true : false,
-      response,
-    });
   }
+  const newProductData = await Product.findById(productId);
+  const totalPoint = newProductData.reviews.reduce((sum, el) => sum + +el.rate, 0);
+  const numReviews = newProductData.reviews.length;
+
+  const response = await Product.findByIdAndUpdate(
+    productId,
+    { $set: { averageRate: Math.round((totalPoint * 10) / numReviews) / 10 } },
+    { new: true }
+  );
+  return res.status(200).json({
+    success: response ? true : false,
+    response,
+  });
 });
 
 export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct };

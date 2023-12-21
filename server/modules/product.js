@@ -52,6 +52,10 @@ const productSchema = new mongoose.Schema(
         comment: { type: String },
       },
     ],
+    averageRate: {
+      type: Number,
+      default: 0,
+    },
     totalReviews: {
       type: Number,
       default: 0,

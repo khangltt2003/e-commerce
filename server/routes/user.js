@@ -16,30 +16,30 @@ import {
   updateUserbyAdmin,
 } from "../controllers/user.js";
 import { isAdmin, verifyAccessToken } from "../middlewares/verifyAccessToken.js";
-const router = express.Router();
+const Router = express.Router();
 
 //user route
-router.post("/register", register);
-router.post("/login/email", loginByEmail);
-router.post("/login/mobile", loginByMobile);
+Router.post("/register", register);
+Router.post("/login/email", loginByEmail);
+Router.post("/login/mobile", loginByMobile);
 //when user want to access to protected resources, authorize first them by verifyAccessToken
-router.get("/current", verifyAccessToken, getCurrUser);
-router.post("/refreshAccessToken", refreshAccessToken);
-router.post("/logout", logout);
-router.get("/forgotpassword", forgotPassword);
-router.put("/resetpassword/:resetToken", resetPassword);
-router.put("/current", verifyAccessToken, updateUser);
+Router.get("/current", verifyAccessToken, getCurrUser);
+Router.post("/refreshAccessToken", refreshAccessToken);
+Router.post("/logout", logout);
+Router.get("/forgotpassword", forgotPassword);
+Router.put("/resetpassword/:resetToken", resetPassword);
+Router.put("/current", verifyAccessToken, updateUser);
 //admin route
-router.get("/", [verifyAccessToken, isAdmin], getAllUsers);
-router.put("/:_id", [verifyAccessToken, isAdmin], updateUserbyAdmin);
-router.delete("/", [verifyAccessToken, isAdmin], deleteUser);
-router.put("/blockuser/:_id", [verifyAccessToken, isAdmin], blockUser);
-router.put("/unblockuser/:_id", [verifyAccessToken, isAdmin], unblockUser);
+Router.get("/", [verifyAccessToken, isAdmin], getAllUsers);
+Router.put("/:_id", [verifyAccessToken, isAdmin], updateUserbyAdmin);
+Router.delete("/", [verifyAccessToken, isAdmin], deleteUser);
+Router.put("/blockuser/:_id", [verifyAccessToken, isAdmin], blockUser);
+Router.put("/unblockuser/:_id", [verifyAccessToken, isAdmin], unblockUser);
 
-// router.get("/register", (req, res) => {
+// Router.get("/register", (req, res) => {
 //   res.send("Register page");
 // });
-export default router;
+export default Router;
 
 //CRUD = create read update delete
 //HTTPS  post get put delete
