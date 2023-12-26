@@ -42,60 +42,40 @@ const likeBlog = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
   const { _id: blogId } = req.params;
   const blog = await Blog.findById(blogId);
-  console.log(blog);
   const alreadyDisliked = blog.dislikedBy.some((el) => el.toString() === userId);
-  if (alreadyDisliked) {
-    const response = await Blog.findByIdAndUpdate(
-      blogId,
-      { $pull: { dislikedBy: userId }, $push: { likedBy: userId } },
-      { new: true }
-    );
-    return res.status(200).json({
-      success: response ? true : false,
-      response: response ? response : "something went wrong",
-    });
-  }
   const alreadyLiked = blog.likedBy.some((el) => el.toString() === userId);
-  if (alreadyLiked) {
-    await Blog.findByIdAndUpdate(blogId, { $pull: { likedBy: userId } }, { new: true });
+
+  if (alreadyDisliked) {
+    await Blog.findByIdAndUpdate(blogId, { $pull: { dislikedBy: userId }, $push: { likedBy: userId } });
+  } else if (alreadyLiked) {
+    await Blog.findByIdAndUpdate(blogId, { $pull: { likedBy: userId } });
   } else {
-    await Blog.findByIdAndUpdate(blogId, { $push: { likedBy: userId } }, { new: true });
+    await Blog.findByIdAndUpdate(blogId, { $push: { likedBy: userId } });
   }
-  const response = await Blog.findById(blogId);
+  const updatedBlog = await Blog.findById(blogId);
   return res.status(200).json({
-    success: response ? true : false,
-    response: response ? response : "cannot like",
+    success: updatedBlog ? true : false,
+    updatedBlog: updatedBlog ? updatedBlog : "something went wrong",
   });
 });
 
 const dislikeBlog = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
   const { _id: blogId } = req.params;
-  const blog = await Blog.findById(blogId);
+  const blog = await Blog.findByIdAndUpdate(blogId);
   const alreadyLiked = blog.likedBy.some((el) => el.toString() === userId);
-  if (alreadyLiked) {
-    const response = await Blog.findByIdAndUpdate(
-      blogId,
-      { $pull: { likedBy: userId }, $push: { dislikedBy: userId } },
-      { new: true }
-    );
-    return res.status(200).json({
-      success: response ? true : false,
-      response: response ? response : "something went wrong",
-    });
-  }
   const alreadyDisliked = blog.dislikedBy.some((el) => el.toString() === userId);
-  if (alreadyDisliked) {
-    console.log(1);
-    await Blog.findByIdAndUpdate(blogId, { $pull: { dislikedBy: userId } }, { new: true });
+  if (alreadyLiked) {
+    await Blog.findByIdAndUpdate(blogId, { $pull: { likedBy: userId }, $push: { dislikedBy: userId } });
+  } else if (alreadyDisliked) {
+    await Blog.findByIdAndUpdate(blogId, { $pull: { dislikedBy: userId } });
   } else {
-    console.log(2);
-    await Blog.findByIdAndUpdate(blogId, { $push: { dislikedBy: userId } }, { new: true });
+    await Blog.findByIdAndUpdate(blogId, { $push: { dislikedBy: userId } });
   }
-  const response = await Blog.findById(blogId);
+  const updatedBlog = await Blog.findById(blogId);
   return res.status(200).json({
-    success: response ? true : false,
-    response: response ? response : "cannot dislike",
+    success: updatedBlog ? true : false,
+    updatedBlog: updatedBlog ? updatedBlog : "something went wrong",
   });
 });
 
