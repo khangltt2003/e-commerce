@@ -13,7 +13,9 @@ const createBlog = asyncHandler(async (req, res) => {
 
 const getBlog = asyncHandler(async (req, res) => {
   const { _id } = req.params;
-  const response = await Blog.findById(_id);
+  const response = await Blog.findById(_id)
+    .populate("likedBy", "firstname lastname")
+    .populate("dislikedBy", "firstname lastname");
   return res.status(200).json({
     success: response ? true : false,
     response: response ? response : "cannot find product",
