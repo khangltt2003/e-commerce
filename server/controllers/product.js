@@ -1,7 +1,7 @@
 import Product from "../modules/product.js";
 import asyncHandler from "express-async-handler";
 import slugify from "slugify";
-import { uploadImageToS3 } from "../ultils/uploadImageToS3.js";
+import { deleteImageFromS3, getImageFromS3, uploadImageToS3 } from "../ultils/s3Command.js";
 
 const createProduct = asyncHandler(async (req, res) => {
   if (
@@ -44,7 +44,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
     sortBy = req.query.sort.split(",").join(" "); // sort=brand,price => [brand, price] => "brand price"
   }
   //fields limit
-  let fields = `title description price brand reviews`;
+  let fields = `title description price brand reviews images`;
   if (req.query.fields) {
     fields = req.query.fields.split(",").join(" ");
   }
@@ -57,10 +57,16 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const currentPage = +req.query.page || 1; //add + to convert from string to number
   const limit = +req.query.limit || 10;
   const skip = limit * (currentPage - 1);
-  const response = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
+  const products = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
   //const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
-
-  //console.log(response);
+  let response = await Promise.all(
+    products.map(async (product) => {
+      if (product.images.length === 0) return product;
+      product = product.toObject();
+      const url = await getImageFromS3(product.images[0]);
+      return { ...product, imageURL: url };
+    })
+  );
   return res.status(200).json({
     success: response ? true : false,
     response: response ? response : "cannot get products",
@@ -70,10 +76,16 @@ const getAllProducts = asyncHandler(async (req, res) => {
 
 const getProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
-  const response = await Product.findById(_id);
+  let product = await Product.findById(_id);
+  product = product.toObject(); //convert mongoose object to normal object
+  product.imageURL = [];
+  for (const image of product.images) {
+    let url = await getImageFromS3(image);
+    product.imageURL.push(url);
+  }
   return res.status(200).json({
-    success: response ? true : false,
-    product: response ? response : "cannot find product",
+    success: product ? true : false,
+    product: product ? product : "cannot find product",
   });
 });
 
@@ -139,14 +151,49 @@ const reviewProduct = asyncHandler(async (req, res) => {
 const uploadProductImage = asyncHandler(async (req, res) => {
   const { _id: productId } = req.params;
   const images = req.files;
-  await images.forEach(async (image) => {
-    const imageKey = await uploadImageToS3(image);
+  for (const image of images) {
+    const imageKey = await uploadImageToS3(productId, image);
     await Product.findByIdAndUpdate(productId, { $push: { images: imageKey } });
-  });
+  }
   const response = await Product.findById(productId);
   return res.status(200).json({
     response,
   });
 });
 
-export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct, uploadProductImage };
+const getProductImage = asyncHandler(async (req, res) => {
+  const { _id: productId } = req.params;
+  const product = await Product.findById(productId);
+  const images = product.images;
+  let response = [];
+  for (const image of images) {
+    const imageURL = await getImageFromS3(image);
+    response.push(imageURL);
+  }
+  return res.status(200).json({
+    response,
+  });
+});
+
+const deleteProductImage = asyncHandler(async (req, res) => {
+  console.log(req.params);
+  const { _id, imageId } = req.params;
+  console.log(_id, imageId);
+  await deleteImageFromS3(imageId);
+  const response = await Product.findByIdAndUpdate(_id, { $pull: { images: imageId } }, { new: true });
+  return res.status(200).json({
+    response,
+  });
+});
+
+export {
+  deleteProduct,
+  getAllProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  reviewProduct,
+  uploadProductImage,
+  getProductImage,
+  deleteProductImage,
+};

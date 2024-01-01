@@ -2,8 +2,10 @@ import express from "express";
 import {
   createProduct,
   deleteProduct,
+  deleteProductImage,
   getAllProducts,
   getProduct,
+  getProductImage,
   reviewProduct,
   updateProduct,
   uploadProductImage,
@@ -22,4 +24,6 @@ Router.put("/review", verifyAccessToken, reviewProduct);
 Router.put("/:_id", [verifyAccessToken, isAdmin], updateProduct);
 Router.delete("/:_id", [verifyAccessToken, isAdmin], deleteProduct);
 Router.put("/uploadproductimage/:_id", [verifyAccessToken, isAdmin], upload.array("imageName", 12), uploadProductImage);
+Router.get("/getproductimage/:_id", getProductImage);
+Router.delete("/deleteproductimage/:_id/:imageId", [verifyAccessToken, isAdmin], deleteProductImage);
 export default Router;

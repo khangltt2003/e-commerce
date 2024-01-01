@@ -42,6 +42,7 @@ const productSchema = new mongoose.Schema(
       {
         type: String,
         default: [],
+        unique: true,
       },
     ],
     color: {
