@@ -1,6 +1,7 @@
 import Product from "../modules/product.js";
 import asyncHandler from "express-async-handler";
 import slugify from "slugify";
+import { uploadImageToS3 } from "../ultils/uploadImageToS3.js";
 
 const createProduct = asyncHandler(async (req, res) => {
   if (
@@ -78,6 +79,7 @@ const getProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
+  if (Object.keys(req.body).length === 0) throw new Error("missing infomation");
   const response = await Product.findByIdAndUpdate(
     { _id: _id },
     { ...req.body, slug: slugify(req.body.title) },
@@ -134,4 +136,17 @@ const reviewProduct = asyncHandler(async (req, res) => {
   });
 });
 
-export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct };
+const uploadProductImage = asyncHandler(async (req, res) => {
+  const { _id: productId } = req.params;
+  const images = req.files;
+  await images.forEach(async (image) => {
+    const imageKey = await uploadImageToS3(image);
+    await Product.findByIdAndUpdate(productId, { $push: { images: imageKey } });
+  });
+  const response = await Product.findById(productId);
+  return res.status(200).json({
+    response,
+  });
+});
+
+export { deleteProduct, getAllProducts, getProduct, createProduct, updateProduct, reviewProduct, uploadProductImage };

@@ -5,6 +5,7 @@ import productCategoryRouter from "./productCategory.js";
 import blogCategoryRouter from "./productCategory.js";
 import blogRouter from "./blog.js";
 import brandRouter from "./brand.js";
+import couponRouter from "./coupon.js";
 const initRoutes = (app) => {
   //app will find all routes in router if not found, errorHandler will handle it
   app.use("/api/user", userRouter); //mount user to user route
@@ -13,6 +14,8 @@ const initRoutes = (app) => {
   app.use("/api/blogCategory", blogCategoryRouter); //mount user to user route
   app.use("/api/blog", blogRouter);
   app.use("/api/brand", brandRouter);
+  app.use("/api/coupon", couponRouter);
+
   app.use(notFound); //not found route
   app.use(errorHandler); //error handler middleware
 };
