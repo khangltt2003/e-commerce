@@ -151,11 +151,24 @@ const reviewProduct = asyncHandler(async (req, res) => {
 const uploadProductImage = asyncHandler(async (req, res) => {
   const { _id: productId } = req.params;
   const images = req.files;
+  //console.log(images);
   for (const image of images) {
     const imageKey = await uploadImageToS3(productId, image);
     await Product.findByIdAndUpdate(productId, { $push: { images: imageKey } });
   }
   const response = await Product.findById(productId);
+  return res.status(200).json({
+    response,
+  });
+});
+
+const deleteProductImage = asyncHandler(async (req, res) => {
+  const { imageId } = req.params;
+  const productId = imageId.split("_")[0];
+  //console.log(productId, imageId);
+  const result = await deleteImageFromS3(imageId);
+  console.log(result);
+  const response = await Product.findByIdAndUpdate({ _id: productId }, { $pull: { images: imageId } }, { new: true });
   return res.status(200).json({
     response,
   });
@@ -170,17 +183,6 @@ const getProductImage = asyncHandler(async (req, res) => {
     const imageURL = await getImageFromS3(image);
     response.push(imageURL);
   }
-  return res.status(200).json({
-    response,
-  });
-});
-
-const deleteProductImage = asyncHandler(async (req, res) => {
-  console.log(req.params);
-  const { _id, imageId } = req.params;
-  console.log(_id, imageId);
-  await deleteImageFromS3(imageId);
-  const response = await Product.findByIdAndUpdate(_id, { $pull: { images: imageId } }, { new: true });
   return res.status(200).json({
     response,
   });

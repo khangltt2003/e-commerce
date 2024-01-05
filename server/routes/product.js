@@ -15,6 +15,7 @@ import multer from "multer";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
 const Router = express.Router();
 
 Router.post("/", [verifyAccessToken, isAdmin], createProduct);
@@ -23,7 +24,7 @@ Router.get("/:_id", getProduct);
 Router.put("/review", verifyAccessToken, reviewProduct);
 Router.put("/:_id", [verifyAccessToken, isAdmin], updateProduct);
 Router.delete("/:_id", [verifyAccessToken, isAdmin], deleteProduct);
-Router.put("/uploadproductimage/:_id", [verifyAccessToken, isAdmin], upload.array("imageName", 12), uploadProductImage);
+Router.put("/uploadproductimage/:_id", [verifyAccessToken, isAdmin], upload.array("images", 12), uploadProductImage);
 Router.get("/getproductimage/:_id", getProductImage);
-Router.delete("/deleteproductimage/:_id/:imageId", [verifyAccessToken, isAdmin], deleteProductImage);
+Router.delete("/deleteproductimage/:imageId", [verifyAccessToken, isAdmin], deleteProductImage);
 export default Router;

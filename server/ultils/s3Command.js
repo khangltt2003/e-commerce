@@ -21,32 +21,35 @@ function getCurrentTime() {
 
 const uploadImageToS3 = asyncHandler(async (productId, imageInfo) => {
   const extension = imageInfo.mimetype.split("/")[1];
-  const imageKey = productId + "_" + getCurrentTime() + "." + extension;
-  const command = new PutObjectCommand({
+  const imageKey = `${productId}_${getCurrentTime()}.${extension}`;
+  const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: imageKey,
-    Body: imageInfo.buffer,
     ContentType: imageInfo.mimetype,
-  });
+    Body: imageInfo.buffer,
+  };
+  const command = new PutObjectCommand(params);
   await s3.send(command);
   return imageKey;
 });
 
 const getImageFromS3 = asyncHandler(async (imageId) => {
-  const command = new GetObjectCommand({
+  const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: imageId,
-  });
+  };
+  const command = new GetObjectCommand(params);
   const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
   return url;
 });
 
 const deleteImageFromS3 = asyncHandler(async (imageId) => {
-  const command = new DeleteObjectCommand({
+  const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: imageId,
-  });
-  await s3.send(command);
+  };
+  const command = new DeleteObjectCommand(params);
+  return await s3.send(command);
 });
 
 export { uploadImageToS3, getImageFromS3, deleteImageFromS3 };
