@@ -59,7 +59,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const skip = limit * (currentPage - 1);
   const products = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
   //const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
-  let response = await Promise.all(
+  const response = await Promise.all(
     products.map(async (product) => {
       if (product.images.length === 0) return product;
       product = product.toObject();
@@ -78,11 +78,11 @@ const getProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
   let product = await Product.findById(_id);
   product = product.toObject(); //convert mongoose object to normal object
-  product.imageURL = [];
-  for (const image of product.images) {
-    let url = await getImageFromS3(image);
-    product.imageURL.push(url);
-  }
+  product.imageURL = await Promise.all(
+    product.images.map(async (image) => {
+      return await getImageFromS3(image);
+    })
+  );
   return res.status(200).json({
     success: product ? true : false,
     product: product ? product : "cannot find product",
@@ -151,7 +151,8 @@ const reviewProduct = asyncHandler(async (req, res) => {
 const uploadProductImage = asyncHandler(async (req, res) => {
   const { _id: productId } = req.params;
   const images = req.files;
-  //console.log(images);
+  if (!req.files) throw new Error("missing information");
+  // console.log(images);
   for (const image of images) {
     const imageKey = await uploadImageToS3(productId, image);
     await Product.findByIdAndUpdate(productId, { $push: { images: imageKey } });
@@ -162,27 +163,28 @@ const uploadProductImage = asyncHandler(async (req, res) => {
   });
 });
 
-const deleteProductImage = asyncHandler(async (req, res) => {
-  const { imageId } = req.params;
-  const productId = imageId.split("_")[0];
-  //console.log(productId, imageId);
-  const result = await deleteImageFromS3(imageId);
-  console.log(result);
-  const response = await Product.findByIdAndUpdate({ _id: productId }, { $pull: { images: imageId } }, { new: true });
+const getProductImage = asyncHandler(async (req, res) => {
+  const { _id: productId } = req.params;
+  const product = await Product.findById(productId);
+  if (!product) throw new Error("cannot find product");
+  const response = await Promise.all(
+    product.images.map(async (image) => {
+      return await getImageFromS3(image);
+    })
+  );
   return res.status(200).json({
+    success: true,
     response,
   });
 });
 
-const getProductImage = asyncHandler(async (req, res) => {
-  const { _id: productId } = req.params;
-  const product = await Product.findById(productId);
-  const images = product.images;
-  let response = [];
-  for (const image of images) {
-    const imageURL = await getImageFromS3(image);
-    response.push(imageURL);
-  }
+const deleteProductImage = asyncHandler(async (req, res) => {
+  const { imageId } = req.params;
+  const productId = imageId.split("_")[0];
+  //console.log(productId, imageId);
+  await deleteImageFromS3(imageId);
+  // console.log(result);
+  const response = await Product.findByIdAndUpdate({ _id: productId }, { $pull: { images: imageId } }, { new: true });
   return res.status(200).json({
     response,
   });

@@ -39,8 +39,7 @@ const getImageFromS3 = asyncHandler(async (imageId) => {
     Key: imageId,
   };
   const command = new GetObjectCommand(params);
-  const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-  return url;
+  return await getSignedUrl(s3, command, { expiresIn: 3600 });
 });
 
 const deleteImageFromS3 = asyncHandler(async (imageId) => {
