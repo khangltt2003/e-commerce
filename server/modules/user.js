@@ -28,10 +28,22 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "user",
     },
-    cart: {
-      type: Array,
-      default: [],
-    },
+    cart: [
+      {
+        product: {
+          type: mongoose.Types.ObjectId,
+          ref: "Product",
+        },
+        quantity: Number,
+        color: String,
+      },
+    ],
+    orders: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
     address: [
       {
         type: mongoose.Types.ObjectId,
