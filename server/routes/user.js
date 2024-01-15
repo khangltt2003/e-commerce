@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addProductToCart,
   blockUser,
   deleteUser,
   forgotPassword,
@@ -10,6 +11,7 @@ import {
   logout,
   refreshAccessToken,
   register,
+  removeProductFromCart,
   resetPassword,
   unblockUser,
   updateUser,
@@ -35,6 +37,8 @@ Router.put("/:_id", [verifyAccessToken, isAdmin], updateUserbyAdmin);
 Router.delete("/", [verifyAccessToken, isAdmin], deleteUser);
 Router.put("/blockuser/:_id", [verifyAccessToken, isAdmin], blockUser);
 Router.put("/unblockuser/:_id", [verifyAccessToken, isAdmin], unblockUser);
+Router.put("/addproducttocart/:_id", verifyAccessToken, addProductToCart);
+Router.put("/removeproductfromcart/:_id", verifyAccessToken, removeProductFromCart);
 
 // Router.get("/register", (req, res) => {
 //   res.send("Register page");

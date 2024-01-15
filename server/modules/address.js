@@ -15,6 +15,10 @@ const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  streetNumber: {
+    type: Number,
+    required: true,
+  },
   street: {
     type: String,
     required: true,

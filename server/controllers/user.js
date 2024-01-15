@@ -5,6 +5,7 @@ import { generateAccessToken, generateRefreshToken } from "../middlewares/jwt.js
 import jwt from "jsonwebtoken";
 import { sendMail } from "../ultils/sendmail.js";
 import crypto from "crypto";
+import user from "../modules/user.js";
 
 //async handler will catch error in send to error handler in index route
 const register = asyncHandler(async (req, res) => {
@@ -82,7 +83,7 @@ const loginSuccess = asyncHandler(async (user, res) => {
   const accessToken = generateAccessToken(userData._id, role); //create access token using id and role
   const newRefreshToken = generateRefreshToken(userData._id); // create refresh token using id
   //update and store refresh token in database
-  await User.findByIdAndUpdate({ _id: userData._id }, { refreshToken: newRefreshToken }, { new: true });
+  await User.findByIdAndUpdate(userData._id, { refreshToken: newRefreshToken }, { new: true });
   //store refresh token in cookie for 7 days
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true, //accept only https
@@ -101,7 +102,7 @@ const getCurrUser = asyncHandler(async (req, res) => {
   const currUser = await User.findById(
     { _id: _id },
     { refreshToken: 0, password: 0, role: 0 } //exclude refresh token, password, role from showing
-  );
+  ).populate("cart.product", "title");
   return res.status(200).json({
     success: currUser ? true : false,
     res: currUser ? currUser : "User not found",
@@ -279,6 +280,51 @@ const unblockUser = asyncHandler(async (req, res) => {
   });
 });
 
+const addProductToCart = asyncHandler(async (req, res) => {
+  const { _id: productId } = req.params;
+  const { _id: userId } = req.user;
+  const { quantity, color } = req.body;
+
+  if (!quantity || !color) throw new Error("missing information");
+
+  //get current user
+  const currUser = await User.findById(userId).select("cart firstname lastname email");
+  const currUserCart = currUser.cart;
+  //check if the same product with the same color is in cart
+  const alreadyInCart = currUserCart.find(
+    (item) => item.product.toString() === productId && item.color === color //check if productId in cart and product color match
+  );
+  if (alreadyInCart) {
+    const response = await User.findOneAndUpdate(
+      { _id: userId, cart: { $elemMatch: alreadyInCart } },
+      { $inc: { "cart.$.quantity": quantity } },
+      { new: true }
+    ).select("cart firstname lastname email");
+    return res.status(200).json({
+      success: response ? true : false,
+      response: response ? response : "something went wrong",
+    });
+  }
+  const newProduct = { product: productId, quantity, color };
+  const response = await User.findByIdAndUpdate(userId, { $push: { cart: newProduct } }, { new: true }).select(
+    "cart firstname lastname email"
+  );
+  return res.status(200).json({
+    success: response ? true : false,
+    response: response ? response : "something went wrong",
+  });
+});
+
+const removeProductFromCart = asyncHandler(async (req, res) => {
+  const { _id: itemId } = req.params;
+  const { _id: userId } = req.user;
+  const response = await User.findByIdAndUpdate(userId, { $pull: { cart: { _id: itemId } } }, { new: true });
+  return res.status(200).json({
+    success: response ? true : false,
+    response: response ? response : "something went wrong",
+  });
+});
+
 export {
   register,
   loginByEmail,
@@ -294,4 +340,6 @@ export {
   updateUserbyAdmin,
   blockUser,
   unblockUser,
+  addProductToCart,
+  removeProductFromCart,
 };
