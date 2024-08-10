@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 // Declare the Schema of the Mongo model
 const productSchema = new mongoose.Schema(
@@ -11,11 +12,10 @@ const productSchema = new mongoose.Schema(
     slug: {
       type: String,
       required: true,
-      unique: true,
       lowercase: true,
     },
     description: {
-      type: String,
+      type: [String],
       required: true,
     },
     brand: {
@@ -27,8 +27,8 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: mongoose.Types.ObjectId,
-      ref: "Category",
+      type: String,
+      required: true,
     },
     quantity: {
       type: Number,
@@ -45,10 +45,22 @@ const productSchema = new mongoose.Schema(
         unique: true,
       },
     ],
-    color: {
+    variants: [
+      {
+        label: {
+          type: String,
+          required: true,
+        },
+        options: {
+          type: [String],
+          required: true,
+        },
+      },
+    ],
+    thumb: {
       type: String,
-      enum: ["Black", "Grown", "Red"],
     },
+
     reviews: [
       {
         rate: { type: Number },

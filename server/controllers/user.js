@@ -47,7 +47,6 @@ const loginByEmail = asyncHandler(async (req, res) => {
   }
   //find email in database
   const userFound = await User.findOne({ email: email });
-  console.log(userFound);
   //if found user and input passwordd == hashed password
   if (userFound && (await bcrypt.compare(password, userFound.password))) {
     if (userFound.isBlocked) throw new Error("You are blocked. Please contact admin");
