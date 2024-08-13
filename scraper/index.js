@@ -42,25 +42,38 @@ const scrapItem = async (browser, url) => {
   try {
     const page = await browser.newPage();
     await page.goto(url);
-    await page.waitForSelector("div#shopify-section-product-template");
+    await page.waitForSelector("div#shopify-section-product-template", { timeout: 10000 });
 
     const scrapedData = await page.evaluate(() => {
       //get name
       const name = document.querySelector("div#shopify-section-product-template > header.section-header > div.wrapper > h3")?.innerText;
 
+      //get category
+      const category = document.querySelectorAll("nav.breadcrumb > a")[1].innerText.toLowerCase();
+
+      //get brand
+      const brand = name.split(" ")[0].toLowerCase();
+
       //get price
       const price = document.querySelector("span.money")?.innerText;
 
+      //get thumb
+      const thumb = document.querySelector("img#ProductPhotoImg")?.src;
+
       //get image
-      const images = Array.from(document.querySelectorAll("#ProductThumbs > div.owl-wrapper-outer > div.owl-wrapper > div")).map((el) => {
-        return el.querySelector("div.owl-item > li.thumb__element  > a.product-single__thumbnail > img").src;
+      const images = Array.from(
+        document.querySelectorAll(
+          "#ProductThumbs > div.owl-wrapper-outer > div.owl-wrapper > div.owl-item > li.thumb__element > a.product-single__thumbnail"
+        )
+      ).map((el) => {
+        return el.href;
       });
       //get description
       const description = Array.from(document.querySelectorAll("div#desc >  ul.spec > li")).map((el) => el.innerText);
 
       //get variant
       const variants = Array.from(document.querySelectorAll("form.product-single__form > div.radio-wrapper")).map((type) => {
-        const label = type.querySelector("label.single-option-radio__label").innerText;
+        const label = type.querySelector("label.single-option-radio__label")?.innerText;
         const options = Array.from(type.querySelectorAll("fieldset.single-option-radio > input.single-option-selector__radio")).map((el) => el.value);
         return {
           label: label,
@@ -70,8 +83,11 @@ const scrapItem = async (browser, url) => {
 
       return {
         name: name ? name : "none",
+        category: category ? category : "none",
+        brand: brand ? brand : "none",
         price: price ? parseFloat(price.replace("$", "")) : "none",
         description: description ? description : "none",
+        thumb: thumb,
         images: images ? images : "none",
         variants: variants ? variants : "none",
       };
@@ -120,5 +136,4 @@ const data = await scrapData(browser, url);
 fs.writeFileSync("items.json", JSON.stringify(data), (err) => {
   if (err) console.log("cannot write to file");
 });
-
 await browser.close();

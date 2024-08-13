@@ -1,6 +1,8 @@
 [
   {
     "name": "XIAOMI MI 5",
+    "category": "smartphone",
+    "brand": "xiaomi",
     "price": 305,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -14,6 +16,7 @@
       "Internal: 32GB/64GB/128GB",
       "Camera: 16 MP, f/2.0 - 4 MP, f/2.0"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1024x1024.jpg?v=1491404851",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1024x1024.jpg?v=1491404851",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1024x1024.jpg?v=1491404851",
@@ -28,6 +31,8 @@
   },
   {
     "name": "VIVO V5",
+    "category": "smartphone",
+    "brand": "vivo",
     "price": 250,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -41,6 +46,7 @@
       "Internal: 32 GB, 4 GB RAM",
       "Camera: 13MB - 20 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_31cc1c0e-ac34-4c8e-946a-a5e30acf6b1a_1024x1024.jpg?v=1491404855",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_31cc1c0e-ac34-4c8e-946a-a5e30acf6b1a_1024x1024.jpg?v=1491404855",
       "https://digital-world-2.myshopify.com/cdn/shop/products/vivo-v5-1_1024x1024.jpg?v=1491404855",
@@ -50,6 +56,8 @@
   },
   {
     "name": "SONY XPERIA XA",
+    "category": "smartphone",
+    "brand": "sony",
     "price": 708,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -63,6 +71,7 @@
       "Internal: 32/64 GB",
       "Camera: 23 MP, f/2.0 - 13 MP, f/2.0"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/xperia-xa-white-D1-hero-image-35f68ba1669ba23b989e7519e4a1660d_1024x1024.jpg?v=1491404881",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/xperia-xa-white-D1-hero-image-35f68ba1669ba23b989e7519e4a1660d_1024x1024.jpg?v=1491404881",
       "https://digital-world-2.myshopify.com/cdn/shop/products/sony-xperia-xz_1024x1024.jpg?v=1491404881",
@@ -76,6 +85,8 @@
   },
   {
     "name": "SAMSUNG GALAXY S7",
+    "category": "smartphone",
+    "brand": "samsung",
     "price": 899,
     "description": [
       "Technology: GSM / CDMA / HSPA / EVDO / LTE",
@@ -89,6 +100,7 @@
       "Internal: 32 GB, 4 GB RAM",
       "Camera: 112 MP - 5 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/samsung-galaxy-s7-and-s7-edge-unveiled-with-refined-design-performance-boost-500729-4_1024x1024.jpg?v=1491404832",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/samsung-galaxy-s7-and-s7-edge-unveiled-with-refined-design-performance-boost-500729-4_1024x1024.jpg?v=1491404832",
       "https://digital-world-2.myshopify.com/cdn/shop/products/samsung_galaxys7_heroCard_foreground_1024x1024.png?v=1491404832",
@@ -99,6 +111,8 @@
   },
   {
     "name": "SAMSUNG GALAXY J7 PRIME",
+    "category": "smartphone",
+    "brand": "samsung",
     "price": 417.56,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -112,6 +126,7 @@
       "Internal: 16/32 GB, 3 GB RAM",
       "Camera: 13 MP, f/1.9 - 8 MP, f/1.9"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_1024x1024.jpg?v=1491404895",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_1024x1024.jpg?v=1491404895",
       "https://digital-world-2.myshopify.com/cdn/shop/products/samsung-galaxy-j7-prime-1_1024x1024.jpg?v=1491404895",
@@ -125,6 +140,8 @@
   },
   {
     "name": "LG G5",
+    "category": "smartphone",
+    "brand": "lg",
     "price": 590,
     "description": [
       "Technology: GSM / CDMA / HSPA / LTE",
@@ -138,6 +155,7 @@
       "Internal: 32 GB, 4 GB RAM",
       "Camera: Dual 16 MP (29mm, f/1.8) + 8 MP (12mm, f/2.4)"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/modular-type-1600x840_G5_M01C_1024x1024.jpg?v=1491404872",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/modular-type-1600x840_G5_M01C_1024x1024.jpg?v=1491404872",
       "https://digital-world-2.myshopify.com/cdn/shop/products/lg-g5-3_1024x1024.jpg?v=1491404872",
@@ -149,6 +167,8 @@
   },
   {
     "name": "IPHONE 7",
+    "category": "smartphone",
+    "brand": "iphone",
     "price": 899,
     "description": [
       "Technology: GSM / CDMA / HSPA / EVDO / LTE",
@@ -162,6 +182,7 @@
       "Internal: 32/128 GB, 2 GB RAM",
       "Camera: 12 MP - 7 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/iphone_1024x1024.jpg?v=1491404827",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/iphone_1024x1024.jpg?v=1491404827",
       "https://digital-world-2.myshopify.com/cdn/shop/products/1_83bd7ced-da1e-4701-afac-cc3c61ea1a51_1024x1024.jpg?v=1491404827",
@@ -176,6 +197,8 @@
   },
   {
     "name": "HTC 10",
+    "category": "smartphone",
+    "brand": "htc",
     "price": 517,
     "description": [
       "Technology: GSM / CDMA / HSPA / LTE",
@@ -189,6 +212,7 @@
       "Internal: 32/64 GB, 4 GB RAM",
       "Camera: 12 MP, f/1.8 - 5 MP, f/1.8"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/HTC-10-1_1024x1024.jpg?v=1491404875",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/HTC-10-1_1024x1024.jpg?v=1491404875",
       "https://digital-world-2.myshopify.com/cdn/shop/products/htc-10-5_1024x1024.jpg?v=1491404875",
@@ -201,6 +225,8 @@
   },
   {
     "name": "GOOGLE PIXEL",
+    "category": "smartphone",
+    "brand": "google",
     "price": 834.3,
     "description": [
       "Technology: GSM / CDMA / HSPA / EVDO / LTE",
@@ -214,6 +240,7 @@
       "Internal: 32/128 GB, 4 GB RAM",
       "Camera: 12.3 MP, f/2.0 - 8 MP, f/2.4"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/u3_1024x1024.jpg?v=1491404903",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/u3_1024x1024.jpg?v=1491404903",
       "https://digital-world-2.myshopify.com/cdn/shop/products/u2_1024x1024.jpg?v=1491404903",
@@ -230,6 +257,8 @@
   },
   {
     "name": "XIAOMI MI PAD 3",
+    "category": "tablet",
+    "brand": "xiaomi",
     "price": 175.99,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -243,6 +272,7 @@
       "Internal: 16GB/2GB - 32GB/3GB",
       "Camera: 16 MP, f/2.0 - 5 MP, f/2.0"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_1_1024x1024.jpg?v=1491404888",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-1_1_1024x1024.jpg?v=1491404888",
       "https://digital-world-2.myshopify.com/cdn/shop/products/SS6_1024x1024.jpg?v=1491404888",
@@ -258,6 +288,8 @@
   },
   {
     "name": "SONY XPERIA Z4 TABLET LTE",
+    "category": "tablet",
+    "brand": "sony",
     "price": 699,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -271,6 +303,7 @@
       "Internal: 32 GB, 3 GB RAM",
       "Camera: 8.1 MP - 5.1 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-11_1024x1024.jpg?v=1491404927",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-11_1024x1024.jpg?v=1491404927",
       "https://digital-world-2.myshopify.com/cdn/shop/products/sony-xperia-z4-tablet-1_1024x1024.jpg?v=1491404927",
@@ -282,6 +315,8 @@
   },
   {
     "name": "SAMSUNG GALAXY TAB S 8.4 LTE",
+    "category": "tablet",
+    "brand": "samsung",
     "price": 558.98,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -295,6 +330,7 @@
       "Internal: 16/32 GB, 3 GB RAM",
       "Camera: 8 MP - 2.1 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/ss8_1024x1024.jpg?v=1491404867",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/ss8_1024x1024.jpg?v=1491404867",
       "https://digital-world-2.myshopify.com/cdn/shop/products/samsung-galaxy-tab-s-84-1_1024x1024.jpg?v=1491404867",
@@ -307,6 +343,8 @@
   },
   {
     "name": "LG G PAD III 10.1 FHD",
+    "category": "tablet",
+    "brand": "lg",
     "price": 400,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -320,6 +358,7 @@
       "Internal: 32 GB, 2 GB RAM",
       "Camera: 5 MP - 5 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-2_1024x1024.jpg?v=1491404930",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-2_1024x1024.jpg?v=1491404930",
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-3_1024x1024.jpg?v=1491404930"
@@ -328,6 +367,8 @@
   },
   {
     "name": "LENOVO YOGA TAB 3 PLUS",
+    "category": "tablet",
+    "brand": "lenovo",
     "price": 499,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -341,6 +382,7 @@
       "Internal: 32 GB, 3 GB RAM",
       "Camera: 13 MP - 5 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/ss3_1024x1024.jpg?v=1491404819",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/ss3_1024x1024.jpg?v=1491404819",
       "https://digital-world-2.myshopify.com/cdn/shop/products/lenovo-yoga-tab3-plus_1024x1024.jpg?v=1491404819",
@@ -351,6 +393,8 @@
   },
   {
     "name": "HUAWEI MEDIAPAD T1 7.0",
+    "category": "tablet",
+    "brand": "huawei",
     "price": 99,
     "description": [
       "Technology: GSM / HSPA",
@@ -364,6 +408,7 @@
       "Internal: 8 GB, 1 GB RAM",
       "Camera: 2 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/ss4_1024x1024.jpg?v=1491404838",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/ss4_1024x1024.jpg?v=1491404838",
       "https://digital-world-2.myshopify.com/cdn/shop/products/huawei-mediapad-t1-70-1_1024x1024.jpg?v=1491404838",
@@ -374,6 +419,8 @@
   },
   {
     "name": "ASUS ZENPAD 3 8.0 Z581KL",
+    "category": "tablet",
+    "brand": "asus",
     "price": 280,
     "description": [
       "Technology: GSM / HSPA / LTE",
@@ -387,6 +434,7 @@
       "Internal: 32 GB, 4 GB RAM",
       "Camera: 8 MP - 2 MP"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/ss9_1024x1024.jpg?v=1491404859",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/ss9_1024x1024.jpg?v=1491404859",
       "https://digital-world-2.myshopify.com/cdn/shop/products/asus-zenpad-3-80-z581kl-1_1024x1024.jpg?v=1491404859",
@@ -394,10 +442,10 @@
     ],
     "variants": []
   },
-  null,
-  null,
   {
     "name": "LENOVO IDEAPAD 110",
+    "category": "laptop",
+    "brand": "lenovo",
     "price": 769,
     "description": [
       "Processor: Intel, Core i7 Skylake",
@@ -411,6 +459,7 @@
       "Dimensions: 377 x 264 x 22.9 cmM",
       "Weight: 2.3 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_877559ca-7315-44b0-9f7f-f393bd0808bd_1024x1024.jpg?v=1491404790",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_877559ca-7315-44b0-9f7f-f393bd0808bd_1024x1024.jpg?v=1491404790",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_6f644814-23bf-4439-80ff-0b5d50baf196_1024x1024.jpg?v=1491404790",
@@ -420,6 +469,8 @@
   },
   {
     "name": "HP PROBOOK 450",
+    "category": "laptop",
+    "brand": "hp",
     "price": 849,
     "description": [
       "Processor: Intel, Core i5 Skylake",
@@ -433,6 +484,7 @@
       "Dimensions: 382 x 263 x 24.4 cmM",
       "Weight: 2 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_6dbdaadc-bd0c-454b-b4c1-395b60a2e2a7_1024x1024.jpg?v=1491404782",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_6dbdaadc-bd0c-454b-b4c1-395b60a2e2a7_1024x1024.jpg?v=1491404782",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_b21a3aa8-86ed-4338-985d-0bfca8fea6e0_1024x1024.jpg?v=1491404782",
@@ -442,6 +494,8 @@
   },
   {
     "name": "HP PAVILION 15 AU072TX",
+    "category": "laptop",
+    "brand": "hp",
     "price": 849,
     "description": [
       "Processor: Intel, Core i7 Skylake",
@@ -455,6 +509,7 @@
       "Dimensions: 383 x 243 x 22.5 cmM",
       "Weight: 2 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/x2_1024x1024.jpg?v=1491404795",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/x2_1024x1024.jpg?v=1491404795",
       "https://digital-world-2.myshopify.com/cdn/shop/products/x3_1024x1024.jpg?v=1491404795",
@@ -464,6 +519,8 @@
   },
   {
     "name": "DELL INSPIRON 7460",
+    "category": "laptop",
+    "brand": "dell",
     "price": 999,
     "description": [
       "Processor: Core i5 Kabylake 2.50GHz",
@@ -477,6 +534,7 @@
       "Dimensions: 323.3 x 227.1 x 18.95 cmM",
       "Weight: 1.7 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_8ad649f4-de63-464c-a7d1-7573c1b53a2d_1024x1024.jpg?v=1491404804",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_8ad649f4-de63-464c-a7d1-7573c1b53a2d_1024x1024.jpg?v=1491404804",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_eda0eb59-ee79-4c50-b724-c9ed562d180b_1024x1024.jpg?v=1491404804",
@@ -486,6 +544,8 @@
   },
   {
     "name": "ASUS ROG G752VM",
+    "category": "laptop",
+    "brand": "asus",
     "price": 299,
     "description": [
       "Processor: Intel® Pentium® N3700 Processor",
@@ -499,6 +559,7 @@
       "Dimensions: 339 x 235 x 21.9 cmM",
       "Weight: 1.65 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_33133681-0515-48fa-a6ee-fce4fc68afea_1024x1024.jpg?v=1491404807",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_33133681-0515-48fa-a6ee-fce4fc68afea_1024x1024.jpg?v=1491404807",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_f7b95ca1-d4cf-4b52-a22a-481db6b06c82_1024x1024.jpg?v=1491404807",
@@ -508,6 +569,8 @@
   },
   {
     "name": "APPLE MACBOOK PRO 13\"",
+    "category": "laptop",
+    "brand": "apple",
     "price": 1,
     "description": [
       "Processor: 2.0GHz Core i5",
@@ -521,6 +584,7 @@
       "Dimensions: 212,4 x 304.1 x 14,9 cmM",
       "Weight: 1.37 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1_1024x1024.jpg?v=1491404800",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1_1024x1024.jpg?v=1491404800",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1_4c7eeac9-df0b-4725-8a45-cb6c87b42eba_1024x1024.jpg?v=1491404800",
@@ -528,9 +592,10 @@
     ],
     "variants": []
   },
-  null,
   {
     "name": "ACER ASPIRE E5",
+    "category": "laptop",
+    "brand": "acer",
     "price": 619,
     "description": [
       "Processor: Intel, Core i5 Skylake",
@@ -544,6 +609,7 @@
       "Dimensions: 318 x 259 x 30.4 cmM",
       "Weight: 2.23 kg"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_00d0ce5d-e30b-4a9a-bffd-357614f67b8d_1024x1024.jpg?v=1491404787",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_00d0ce5d-e30b-4a9a-bffd-357614f67b8d_1024x1024.jpg?v=1491404787",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_bac0625f-a20a-431b-b73b-0ca2ec0e1495_1024x1024.jpg?v=1491404787",
@@ -553,6 +619,8 @@
   },
   {
     "name": "USB SANDISK",
+    "category": "camera",
+    "brand": "usb",
     "price": 6.99,
     "description": [
       "Read Speed: up to 130 MB/s",
@@ -562,6 +630,7 @@
       "Storage temperature: 0° - 158°",
       "5-year limited warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z5_1024x1024.jpg?v=1491404811"
@@ -570,6 +639,8 @@
   },
   {
     "name": "SENNHEISER EZX 80",
+    "category": "camera",
+    "brand": "sennheiser",
     "price": 79,
     "description": [
       "Long talk time – Up to 10 hours",
@@ -584,11 +655,14 @@
       "Always in control",
       "Peace of mind"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_1024x1024.jpg?v=1491404910",
     "images": [],
     "variants": []
   },
   {
     "name": "SAMSUNG GEAR VR",
+    "category": "camera",
+    "brand": "samsung",
     "price": 119,
     "description": [
       "Connections: USB 2.0, USB 3.0",
@@ -600,6 +674,7 @@
       "Platform: Samsung Gear VR powered by Oculus",
       "Supported: Note5, Note7, S6, S6 Edge, S6 Edge+, S7, S7 Edge"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_1024x1024.jpg?v=1491404913",
@@ -610,6 +685,8 @@
   },
   {
     "name": "MOTOROLA MOTO 360 (2ND GEN)",
+    "category": "camera",
+    "brand": "motorola",
     "price": 349.99,
     "description": [
       "Technology: No cellular connectivity",
@@ -623,6 +700,7 @@
       "Internal: 4 GB, 512 MB RAM",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
       "https://digital-world-2.myshopify.com/cdn/shop/products/motorola-moto-360-2015-1_1024x1024.jpg?v=1491404918",
@@ -637,6 +715,8 @@
   },
   {
     "name": "LOGITECH WIRELESS KEYBOARD MK240 NANO",
+    "category": "camera",
+    "brand": "logitech",
     "price": 24.34,
     "description": [
       "Dimensions: 139mm x 288mm x 21mm",
@@ -648,11 +728,14 @@
       "Nano USB receiver",
       "3-year Limited hardware warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1024x1024.jpg?v=1491404809",
     "images": [],
     "variants": []
   },
   {
     "name": "LOGITECH MX ANYWHERE 2",
+    "category": "camera",
+    "brand": "logitech",
     "price": 17.99,
     "description": [
       "Technology: USB port or Bluetooth",
@@ -666,6 +749,7 @@
       "1-Year Limited Hardware Warranty",
       "Requirements: Windows® 7 to latest"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_5229b270-7b1c-4b40-8100-204f96c43f88_1024x1024.jpg?v=1491404814",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
@@ -675,6 +759,8 @@
   },
   {
     "name": "JBL CHARGE 3",
+    "category": "camera",
+    "brand": "jbl",
     "price": 149.95,
     "description": [
       "Battery type: Lithium-ion Polymer (22.2Wh)",
@@ -687,6 +773,7 @@
       "Weight: 800g",
       "Power supply: 5V / 2.3A"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_2_1024x1024.jpg?v=1491404907",
@@ -696,6 +783,8 @@
   },
   {
     "name": "APPLE WATCH EDITION SERIES 2",
+    "category": "camera",
+    "brand": "apple",
     "price": 375,
     "description": [
       "Technology: No cellular connectivity",
@@ -709,6 +798,7 @@
       "Internal: No",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
       "https://digital-world-2.myshopify.com/cdn/shop/products/apple-watch2-edition-42mm2_1024x1024.jpg?v=1491404922"
@@ -721,6 +811,8 @@
   },
   {
     "name": "USB SANDISK",
+    "category": "printer",
+    "brand": "usb",
     "price": 6.99,
     "description": [
       "Read Speed: up to 130 MB/s",
@@ -730,6 +822,7 @@
       "Storage temperature: 0° - 158°",
       "5-year limited warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z5_1024x1024.jpg?v=1491404811"
@@ -738,6 +831,8 @@
   },
   {
     "name": "SENNHEISER EZX 80",
+    "category": "printer",
+    "brand": "sennheiser",
     "price": 79,
     "description": [
       "Long talk time – Up to 10 hours",
@@ -752,11 +847,14 @@
       "Always in control",
       "Peace of mind"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_1024x1024.jpg?v=1491404910",
     "images": [],
     "variants": []
   },
   {
     "name": "SAMSUNG GEAR VR",
+    "category": "printer",
+    "brand": "samsung",
     "price": 119,
     "description": [
       "Connections: USB 2.0, USB 3.0",
@@ -768,6 +866,7 @@
       "Platform: Samsung Gear VR powered by Oculus",
       "Supported: Note5, Note7, S6, S6 Edge, S6 Edge+, S7, S7 Edge"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_1024x1024.jpg?v=1491404913",
@@ -778,6 +877,8 @@
   },
   {
     "name": "MOTOROLA MOTO 360 (2ND GEN)",
+    "category": "printer",
+    "brand": "motorola",
     "price": 349.99,
     "description": [
       "Technology: No cellular connectivity",
@@ -791,6 +892,7 @@
       "Internal: 4 GB, 512 MB RAM",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
       "https://digital-world-2.myshopify.com/cdn/shop/products/motorola-moto-360-2015-1_1024x1024.jpg?v=1491404918",
@@ -805,6 +907,8 @@
   },
   {
     "name": "LOGITECH WIRELESS KEYBOARD MK240 NANO",
+    "category": "printer",
+    "brand": "logitech",
     "price": 24.34,
     "description": [
       "Dimensions: 139mm x 288mm x 21mm",
@@ -816,11 +920,14 @@
       "Nano USB receiver",
       "3-year Limited hardware warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1024x1024.jpg?v=1491404809",
     "images": [],
     "variants": []
   },
   {
     "name": "LOGITECH MX ANYWHERE 2",
+    "category": "printer",
+    "brand": "logitech",
     "price": 17.99,
     "description": [
       "Technology: USB port or Bluetooth",
@@ -834,6 +941,7 @@
       "1-Year Limited Hardware Warranty",
       "Requirements: Windows® 7 to latest"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_5229b270-7b1c-4b40-8100-204f96c43f88_1024x1024.jpg?v=1491404814",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
@@ -843,6 +951,8 @@
   },
   {
     "name": "JBL CHARGE 3",
+    "category": "printer",
+    "brand": "jbl",
     "price": 149.95,
     "description": [
       "Battery type: Lithium-ion Polymer (22.2Wh)",
@@ -855,6 +965,7 @@
       "Weight: 800g",
       "Power supply: 5V / 2.3A"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_2_1024x1024.jpg?v=1491404907",
@@ -864,6 +975,8 @@
   },
   {
     "name": "APPLE WATCH EDITION SERIES 2",
+    "category": "printer",
+    "brand": "apple",
     "price": 375,
     "description": [
       "Technology: No cellular connectivity",
@@ -877,6 +990,7 @@
       "Internal: No",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
       "https://digital-world-2.myshopify.com/cdn/shop/products/apple-watch2-edition-42mm2_1024x1024.jpg?v=1491404922"
@@ -889,6 +1003,8 @@
   },
   {
     "name": "USB SANDISK",
+    "category": "speaker",
+    "brand": "usb",
     "price": 6.99,
     "description": [
       "Read Speed: up to 130 MB/s",
@@ -898,6 +1014,7 @@
       "Storage temperature: 0° - 158°",
       "5-year limited warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z5_1024x1024.jpg?v=1491404811"
@@ -906,6 +1023,8 @@
   },
   {
     "name": "SENNHEISER EZX 80",
+    "category": "speaker",
+    "brand": "sennheiser",
     "price": 79,
     "description": [
       "Long talk time – Up to 10 hours",
@@ -920,11 +1039,14 @@
       "Always in control",
       "Peace of mind"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_1024x1024.jpg?v=1491404910",
     "images": [],
     "variants": []
   },
   {
     "name": "SAMSUNG GEAR VR",
+    "category": "speaker",
+    "brand": "samsung",
     "price": 119,
     "description": [
       "Connections: USB 2.0, USB 3.0",
@@ -936,6 +1058,7 @@
       "Platform: Samsung Gear VR powered by Oculus",
       "Supported: Note5, Note7, S6, S6 Edge, S6 Edge+, S7, S7 Edge"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_1024x1024.jpg?v=1491404913",
@@ -946,6 +1069,8 @@
   },
   {
     "name": "MOTOROLA MOTO 360 (2ND GEN)",
+    "category": "speaker",
+    "brand": "motorola",
     "price": 349.99,
     "description": [
       "Technology: No cellular connectivity",
@@ -959,6 +1084,7 @@
       "Internal: 4 GB, 512 MB RAM",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
       "https://digital-world-2.myshopify.com/cdn/shop/products/motorola-moto-360-2015-1_1024x1024.jpg?v=1491404918",
@@ -973,6 +1099,8 @@
   },
   {
     "name": "LOGITECH WIRELESS KEYBOARD MK240 NANO",
+    "category": "speaker",
+    "brand": "logitech",
     "price": 24.34,
     "description": [
       "Dimensions: 139mm x 288mm x 21mm",
@@ -984,11 +1112,14 @@
       "Nano USB receiver",
       "3-year Limited hardware warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1024x1024.jpg?v=1491404809",
     "images": [],
     "variants": []
   },
   {
     "name": "LOGITECH MX ANYWHERE 2",
+    "category": "speaker",
+    "brand": "logitech",
     "price": 17.99,
     "description": [
       "Technology: USB port or Bluetooth",
@@ -1002,6 +1133,7 @@
       "1-Year Limited Hardware Warranty",
       "Requirements: Windows® 7 to latest"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_5229b270-7b1c-4b40-8100-204f96c43f88_1024x1024.jpg?v=1491404814",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
@@ -1011,6 +1143,8 @@
   },
   {
     "name": "JBL CHARGE 3",
+    "category": "speaker",
+    "brand": "jbl",
     "price": 149.95,
     "description": [
       "Battery type: Lithium-ion Polymer (22.2Wh)",
@@ -1023,6 +1157,7 @@
       "Weight: 800g",
       "Power supply: 5V / 2.3A"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_2_1024x1024.jpg?v=1491404907",
@@ -1032,6 +1167,8 @@
   },
   {
     "name": "APPLE WATCH EDITION SERIES 2",
+    "category": "speaker",
+    "brand": "apple",
     "price": 375,
     "description": [
       "Technology: No cellular connectivity",
@@ -1045,6 +1182,7 @@
       "Internal: No",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
       "https://digital-world-2.myshopify.com/cdn/shop/products/apple-watch2-edition-42mm2_1024x1024.jpg?v=1491404922"
@@ -1057,6 +1195,8 @@
   },
   {
     "name": "SAMSUNG GEAR VR",
+    "category": "accessories",
+    "brand": "samsung",
     "price": 119,
     "description": [
       "Connections: USB 2.0, USB 3.0",
@@ -1068,6 +1208,7 @@
       "Platform: Samsung Gear VR powered by Oculus",
       "Supported: Note5, Note7, S6, S6 Edge, S6 Edge+, S7, S7 Edge"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_1024x1024.jpg?v=1491404913",
@@ -1078,6 +1219,8 @@
   },
   {
     "name": "MOTOROLA MOTO 360 (2ND GEN)",
+    "category": "accessories",
+    "brand": "motorola",
     "price": 349.99,
     "description": [
       "Technology: No cellular connectivity",
@@ -1091,6 +1234,7 @@
       "Internal: 4 GB, 512 MB RAM",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
       "https://digital-world-2.myshopify.com/cdn/shop/products/motorola-moto-360-2015-1_1024x1024.jpg?v=1491404918",
@@ -1105,6 +1249,8 @@
   },
   {
     "name": "LOGITECH WIRELESS KEYBOARD MK240 NANO",
+    "category": "accessories",
+    "brand": "logitech",
     "price": 24.34,
     "description": [
       "Dimensions: 139mm x 288mm x 21mm",
@@ -1116,11 +1262,14 @@
       "Nano USB receiver",
       "3-year Limited hardware warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1024x1024.jpg?v=1491404809",
     "images": [],
     "variants": []
   },
   {
     "name": "LOGITECH MX ANYWHERE 2",
+    "category": "accessories",
+    "brand": "logitech",
     "price": 17.99,
     "description": [
       "Technology: USB port or Bluetooth",
@@ -1134,6 +1283,7 @@
       "1-Year Limited Hardware Warranty",
       "Requirements: Windows® 7 to latest"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_5229b270-7b1c-4b40-8100-204f96c43f88_1024x1024.jpg?v=1491404814",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
@@ -1143,6 +1293,8 @@
   },
   {
     "name": "JBL CHARGE 3",
+    "category": "accessories",
+    "brand": "jbl",
     "price": 149.95,
     "description": [
       "Battery type: Lithium-ion Polymer (22.2Wh)",
@@ -1155,6 +1307,7 @@
       "Weight: 800g",
       "Power supply: 5V / 2.3A"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_2_1024x1024.jpg?v=1491404907",
@@ -1164,6 +1317,8 @@
   },
   {
     "name": "APPLE WATCH EDITION SERIES 2",
+    "category": "accessories",
+    "brand": "apple",
     "price": 375,
     "description": [
       "Technology: No cellular connectivity",
@@ -1177,6 +1332,7 @@
       "Internal: No",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
       "https://digital-world-2.myshopify.com/cdn/shop/products/apple-watch2-edition-42mm2_1024x1024.jpg?v=1491404922"
@@ -1189,6 +1345,8 @@
   },
   {
     "name": "USB SANDISK",
+    "category": "accessories",
+    "brand": "usb",
     "price": 6.99,
     "description": [
       "Read Speed: up to 130 MB/s",
@@ -1198,6 +1356,7 @@
       "Storage temperature: 0° - 158°",
       "5-year limited warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z5_1024x1024.jpg?v=1491404811"
@@ -1206,6 +1365,8 @@
   },
   {
     "name": "SENNHEISER EZX 80",
+    "category": "accessories",
+    "brand": "sennheiser",
     "price": 79,
     "description": [
       "Long talk time – Up to 10 hours",
@@ -1220,11 +1381,14 @@
       "Always in control",
       "Peace of mind"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_1024x1024.jpg?v=1491404910",
     "images": [],
     "variants": []
   },
   {
     "name": "USB SANDISK",
+    "category": "television",
+    "brand": "usb",
     "price": 6.99,
     "description": [
       "Read Speed: up to 130 MB/s",
@@ -1234,6 +1398,7 @@
       "Storage temperature: 0° - 158°",
       "5-year limited warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z4_1b6e3a93-aa84-4a15-8324-deab9b1d4711_1024x1024.jpg?v=1491404811",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z5_1024x1024.jpg?v=1491404811"
@@ -1242,6 +1407,8 @@
   },
   {
     "name": "SENNHEISER EZX 80",
+    "category": "television",
+    "brand": "sennheiser",
     "price": 79,
     "description": [
       "Long talk time – Up to 10 hours",
@@ -1256,11 +1423,14 @@
       "Always in control",
       "Peace of mind"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_2_1024x1024.jpg?v=1491404910",
     "images": [],
     "variants": []
   },
   {
     "name": "SAMSUNG GEAR VR",
+    "category": "television",
+    "brand": "samsung",
     "price": 119,
     "description": [
       "Connections: USB 2.0, USB 3.0",
@@ -1272,6 +1442,7 @@
       "Platform: Samsung Gear VR powered by Oculus",
       "Supported: Note5, Note7, S6, S6 Edge, S6 Edge+, S7, S7 Edge"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_1_1024x1024.jpg?v=1491404913",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_1_1024x1024.jpg?v=1491404913",
@@ -1282,6 +1453,8 @@
   },
   {
     "name": "MOTOROLA MOTO 360 (2ND GEN)",
+    "category": "television",
+    "brand": "motorola",
     "price": 349.99,
     "description": [
       "Technology: No cellular connectivity",
@@ -1295,6 +1468,7 @@
       "Internal: 4 GB, 512 MB RAM",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-189_1024x1024.jpg?v=1491404918",
       "https://digital-world-2.myshopify.com/cdn/shop/products/motorola-moto-360-2015-1_1024x1024.jpg?v=1491404918",
@@ -1309,6 +1483,8 @@
   },
   {
     "name": "LOGITECH WIRELESS KEYBOARD MK240 NANO",
+    "category": "television",
+    "brand": "logitech",
     "price": 24.34,
     "description": [
       "Dimensions: 139mm x 288mm x 21mm",
@@ -1320,11 +1496,14 @@
       "Nano USB receiver",
       "3-year Limited hardware warranty"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z6_1024x1024.jpg?v=1491404809",
     "images": [],
     "variants": []
   },
   {
     "name": "LOGITECH MX ANYWHERE 2",
+    "category": "television",
+    "brand": "logitech",
     "price": 17.99,
     "description": [
       "Technology: USB port or Bluetooth",
@@ -1338,6 +1517,7 @@
       "1-Year Limited Hardware Warranty",
       "Requirements: Windows® 7 to latest"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_5229b270-7b1c-4b40-8100-204f96c43f88_1024x1024.jpg?v=1491404814",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z1_377a4aa6-df39-466b-8234-d7c2f6f4ca1a_1024x1024.jpg?v=1491404814",
@@ -1347,6 +1527,8 @@
   },
   {
     "name": "JBL CHARGE 3",
+    "category": "television",
+    "brand": "jbl",
     "price": 149.95,
     "description": [
       "Battery type: Lithium-ion Polymer (22.2Wh)",
@@ -1359,6 +1541,7 @@
       "Weight: 800g",
       "Power supply: 5V / 2.3A"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/z2_2_1024x1024.jpg?v=1491404907",
       "https://digital-world-2.myshopify.com/cdn/shop/products/z3_2_1024x1024.jpg?v=1491404907",
@@ -1368,6 +1551,8 @@
   },
   {
     "name": "APPLE WATCH EDITION SERIES 2",
+    "category": "television",
+    "brand": "apple",
     "price": 375,
     "description": [
       "Technology: No cellular connectivity",
@@ -1381,6 +1566,7 @@
       "Internal: No",
       "Camera: No"
     ],
+    "thumb": "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
     "images": [
       "https://digital-world-2.myshopify.com/cdn/shop/products/Untitled-123_1024x1024.jpg?v=1491404922",
       "https://digital-world-2.myshopify.com/cdn/shop/products/apple-watch2-edition-42mm2_1024x1024.jpg?v=1491404922"
