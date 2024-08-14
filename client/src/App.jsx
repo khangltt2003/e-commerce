@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Home, Public, Login } from "./pages/public";
+import path from "./utils/path";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="text-red hover:text-blue underline"> why i cant use tailwind </div>;
+  return (
+    <div className="min-h-screen font-main">
+      <Routes>
+        <Route path={path.PUBLIC} element={<Public />}>
+          <Route path={path.HOME} element={<Home />} />
+          <Route path={path.LOGIN} element={<Login />} />
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
