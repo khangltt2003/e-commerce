@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Home, Public, Login } from "./pages/public";
-import path from "./utils/path";
+import path from "./utils/path.js";
 
 function App() {
   return (
