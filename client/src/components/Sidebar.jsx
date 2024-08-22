@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
   const { categories } = useSelector((state) => state.categories);
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="flex flex-col border">
       <p className="py-3 px-4 bg-main text-white">All Collections</p>

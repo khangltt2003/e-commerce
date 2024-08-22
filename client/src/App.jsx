@@ -6,10 +6,12 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 function App() {
+  //get categories
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
   }, []);
+
   return (
     <div className="min-h-screen font-main">
       <Routes>

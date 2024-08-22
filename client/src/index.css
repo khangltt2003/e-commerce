@@ -2,3 +2,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button.slick-arrow {
+  z-index: 5;
+}
+
+button.slick-prev {
+  left: 30px;
+}
+
+button.slick-next {
+  right: 80px;
+}
+
+button.slick-arrow::before {
+  color: #2e5478;
+  background-color: rgba(255, 255, 255, 0.522);
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.slick-prev::before {
+  content: "\276C";
+}
+
+button.slick-next::before {
+  content: "\276D";
+}
+
+ul.slick-dots > li > button::before {
+  top: -30px;
+}

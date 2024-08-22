@@ -5,3 +5,10 @@ export const getProductCategories = () =>
     url: `/productCategory/`,
     method: "get",
   });
+
+export const getProducts = (params) =>
+  axios({
+    url: `/product/`,
+    method: "get",
+    params,
+  });
