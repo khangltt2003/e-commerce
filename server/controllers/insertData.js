@@ -12,6 +12,7 @@ const insertItem = async (item) => {
     price: item?.price,
     description: item?.description,
     quantity: Math.floor(Math.random() * 101),
+    sold: Math.floor(Math.random() * 101),
     thumb: item?.thumb,
     images: item?.images,
     variants: item?.variants,

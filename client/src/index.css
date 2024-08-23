@@ -5,6 +5,7 @@
 
 button.slick-arrow {
   z-index: 5;
+  top: 45%;
 }
 
 button.slick-prev {
@@ -22,7 +23,6 @@ button.slick-arrow::before {
   height: 60px;
   font-size: 30px;
   font-weight: bold;
-  z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,5 +37,21 @@ button.slick-next::before {
 }
 
 ul.slick-dots > li > button::before {
-  top: -30px;
+  top: -5px;
+}
+
+.description-item {
+  list-style-type: disc;
+}
+
+.slide-top {
+  animation: slide-top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes slide-top {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

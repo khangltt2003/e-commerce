@@ -5,3 +5,5 @@ export const slugify = (str) =>
     .replace(/[\u0300-\u036f]/g, "")
     .split(" ")
     .join("-");
+
+export const formatMoney = (num) => Number(num).toFixed(2);

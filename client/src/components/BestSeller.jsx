@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../apis";
 import Slider from "react-slick";
+import ProductCard from "./ProductCard";
 const tabs = [
   { id: 0, value: "Best Seller" },
   { id: 1, value: "New Arrival" },
@@ -27,12 +28,10 @@ const BestSeller = () => {
   useEffect(() => {
     fetchItems();
   }, []);
-  console.log(bestSeller);
-  console.log(newArrival);
 
   return (
-    <div className="border">
-      <div className="flex w-full gap-10 border-b-[3px] pb-2 border-main ">
+    <div className="">
+      <div className="flex w-full gap-10 border-b-[3px] pb-2 mb-3 border-main ">
         {tabs.map((el) => {
           return (
             <span
@@ -46,15 +45,19 @@ const BestSeller = () => {
         })}
       </div>
       <div className="slider-container">
-        <Slider {...settings}>
-          {bestSeller.map((el) => {
-            return (
-              <div className="" key={el._id}>
-                <img src={el.imgURL} alt="" />
-              </div>
-            );
-          })}
-        </Slider>
+        {isActive == 0 ? (
+          <Slider {...settings}>
+            {bestSeller.map((el) => {
+              return <ProductCard key={el.id} product={el} />;
+            })}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {newArrival.map((el) => {
+              return <ProductCard key={el.id} product={el} />;
+            })}
+          </Slider>
+        )}
       </div>
     </div>
   );

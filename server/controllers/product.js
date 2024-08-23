@@ -44,7 +44,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
     sortBy = req.query.sort.split(",").join(" "); // sort=brand,price => [brand, price] => "brand price"
   }
   //fields limit
-  let fields = `title description price brand reviews images`;
+  let fields = `title description price brand reviews images thumb`;
   if (req.query.fields) {
     fields = req.query.fields.split(",").join(" ");
   }

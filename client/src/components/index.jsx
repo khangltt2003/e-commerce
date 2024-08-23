@@ -3,3 +3,8 @@ export { default as Navigation } from "./Navigation";
 export { default as Banner } from "./Banner";
 export { default as Sidebar } from "./Sidebar";
 export { default as BestSeller } from "./BestSeller";
+export { default as ProductCard } from "./ProductCard";
+export { default as ProductDescription } from "./ProductDescription";
+export { default as SelectOptiion } from "./SelectionOption";
+export { default as ProductImageSlide } from "./ProductImageSlide";
+export { default as ExtraInfo } from "./ExtraInfo";

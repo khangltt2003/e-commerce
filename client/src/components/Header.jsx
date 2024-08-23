@@ -3,7 +3,7 @@ import path from "../utils/path";
 import { Link } from "react-router-dom";
 const Header = () => {
   return (
-    <div className="w-main h-[100px] py-[10px] flex justify-between items-center">
+    <div className="w-main h-[90px] py-[10px] flex justify-between items-center">
       <Link to={`/${path.HOME}`}>
         <img className="w-[200px] object-contain" src={logo} alt="" />
       </Link>
