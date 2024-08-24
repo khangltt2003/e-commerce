@@ -1,16 +1,18 @@
-import { Banner, Sidebar, BestSeller } from "../../components";
+import { Banner, Sidebar, BestSeller, DailyDeal, FeaturedProducts } from "../../components";
 
 const Home = () => {
   return (
     <>
-      <div className="flex w-main gap-5 h-[2000px]">
-        <div className="flex flex-col gap-5 w-[25%] border">
+      <div className="flex flex-col w-main gap-5 h-[2000px]">
+        <div className="flex gap-5  w-main">
           <Sidebar />
-        </div>
-        <div className="flex flex-col gap-5 w-[75%] border">
           <Banner />
+        </div>
+        <div className="flex gap-5 w-main ">
+          <DailyDeal />
           <BestSeller />
         </div>
+        <FeaturedProducts />
       </div>
     </>
   );

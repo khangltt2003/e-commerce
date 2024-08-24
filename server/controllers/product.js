@@ -57,16 +57,18 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const currentPage = +req.query.page || 1; //add + to convert from string to number
   const limit = +req.query.limit || 10;
   const skip = limit * (currentPage - 1);
-  const products = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
+  const response = await Product.find(formatedQuery).sort(sortBy).select(fields).skip(skip).limit(limit);
   //const response = await Product.find(formatedQuery).sort(sortBy).select(fields);
-  const response = await Promise.all(
-    products.map(async (product) => {
-      if (product.images.length === 0) return product;
-      product = product.toObject();
-      const url = await getImageFromS3(product.images[0]);
-      return { ...product, imageURL: url };
-    })
-  );
+  //get images in s3
+  // const response = await Promise.all(
+  //   products.map(async (product) => {
+  //     if (product.images.length === 0) return product;
+  //     product = product.toObject();
+  //     const url = await getImageFromS3(product.images[0]);
+  //     return { ...product, imageURL: url };
+  //   })
+  // );
+
   return res.status(200).json({
     success: response ? true : false,
     response: response ? response : "cannot get products",

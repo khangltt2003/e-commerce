@@ -20,7 +20,10 @@ const BestSeller = () => {
   const [newArrival, setNewArrival] = useState([]);
   const [isActive, setIsActive] = useState(0);
   const fetchItems = async () => {
-    const response = await Promise.all([getProducts({ sort: "-sold", limit: "5" }), getProducts({ sort: "-createdAt", limit: "5" })]);
+    const response = await Promise.all([
+      getProducts({ sort: "-sold", limit: "5", fields: "title,price,thumb" }),
+      getProducts({ sort: "-createdAt", limit: "5", fields: "title,price,thumb" }),
+    ]);
     if (response[0]?.success) setBestSeller(response[0].response);
     if (response[1]?.success) setNewArrival(response[1].response);
   };
@@ -30,7 +33,7 @@ const BestSeller = () => {
   }, []);
 
   return (
-    <div className="">
+    <div className="w-[75%]">
       <div className="flex w-full gap-10 border-b-[3px] pb-2 mb-3 border-main ">
         {tabs.map((el) => {
           return (
@@ -48,13 +51,13 @@ const BestSeller = () => {
         {isActive == 0 ? (
           <Slider {...settings}>
             {bestSeller.map((el) => {
-              return <ProductCard key={el.id} product={el} />;
+              return <ProductCard key={el._id} product={el} />;
             })}
           </Slider>
         ) : (
           <Slider {...settings}>
             {newArrival.map((el) => {
-              return <ProductCard key={el.id} product={el} />;
+              return <ProductCard key={el._id} product={el} />;
             })}
           </Slider>
         )}

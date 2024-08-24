@@ -8,3 +8,5 @@ export { default as ProductDescription } from "./ProductDescription";
 export { default as SelectOptiion } from "./SelectionOption";
 export { default as ProductImageSlide } from "./ProductImageSlide";
 export { default as ExtraInfo } from "./ExtraInfo";
+export { default as DailyDeal } from "./DailyDeal";
+export { default as FeaturedProducts } from "./FeaturedProducts";

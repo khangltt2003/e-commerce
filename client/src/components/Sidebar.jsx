@@ -5,7 +5,7 @@ const Sidebar = () => {
   const { categories } = useSelector((state) => state.categories);
   // console.log(categories);
   return (
-    <div className="flex flex-col border">
+    <div className="flex flex-col border w-[25%]">
       <p className="py-3 px-4 bg-main text-white">All Collections</p>
       {categories.map((el) => {
         return (

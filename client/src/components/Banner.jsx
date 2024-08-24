@@ -15,7 +15,7 @@ const settings = {
 
 const Banner = () => {
   return (
-    <div className="slider-container">
+    <div className="w-[75%] slider-container">
       <Slider {...settings}>
         <div>
           <img src={cover_image_1} />
