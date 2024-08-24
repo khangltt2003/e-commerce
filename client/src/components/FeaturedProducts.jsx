@@ -4,17 +4,6 @@ import { NavLink } from "react-router-dom";
 import { formatMoney } from "../utils/helper";
 
 const FeaturedProducts = () => {
-  const gridItems = [
-    { id: 1, className: "" },
-    { id: 2, className: "" },
-    { id: 3, className: "" },
-    { id: 4, className: "col-start-3 row-start-2" },
-    { id: 5, className: "col-start-3 row-start-3" },
-    { id: 6, className: "col-start-2 row-start-2" },
-    { id: 7, className: "col-start-2 row-start-3" },
-    { id: 8, className: "col-start-1 row-start-2" },
-    { id: 9, className: "col-start-1 row-start-3" },
-  ];
   const [products, setProducts] = useState(null);
   const fetchProducts = async () => {
     const response = await getProducts({ limit: 9, fields: "title,price,thumb" });
