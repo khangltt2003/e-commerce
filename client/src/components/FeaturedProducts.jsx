@@ -13,7 +13,6 @@ const FeaturedProducts = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-  console.log(products);
   if (!products) return <>Loading...</>;
   return (
     <div>
